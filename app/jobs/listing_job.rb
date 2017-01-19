@@ -18,15 +18,15 @@ class ListingJob < ApplicationJob # rubocop:disable Style/Documentation
   def perform(listing_url)
     @listing_agent = SocialCrawler::Listing.new(listing_url)
 
-    # seconds = Random.rand(1..100)
-    # sleep seconds
+    seconds = Random.rand(1..100)
+    sleep seconds
 
     begin
-      pp @listing_agent.fetch_listing_metadata
       listing = Listing.new(@listing_agent.fetch_listing_metadata)
       listing.save
     rescue Mechanize::ResponseCodeError => error
       puts "error fetching page: #{error}"
+      return
     end
   end
 end

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
-  resources :listings
+  namespace :api do
+    resources :listings
+  end
+
   mount_ember_app :frontend, to: "/"
 end

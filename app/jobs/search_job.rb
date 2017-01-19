@@ -26,12 +26,8 @@ class SearchJob < ApplicationJob # rubocop:disable Style/Documentation
       house_links << @search_agent.collect_house_links
     end
 
-    ListingJob.perform_later(house_links.flatten[0])
-
-=begin
     house_links.flatten.each do |listing_url|
       ListingJob.perform_later(listing_url)
     end
-=end
   end
 end
