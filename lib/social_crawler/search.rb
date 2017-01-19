@@ -13,6 +13,7 @@ class SocialCrawler
   # rubocop:enable Metric/LineLength
   #
   class Search < SocialCrawler
+    attr_reader :agent
     attr_reader :search_results_page
     attr_reader :search_url
 
@@ -65,7 +66,7 @@ class SocialCrawler
     #
     #
     def final_page?
-      collect_house_links.length < 101 ? false : true
+      collect_house_links.length < 100 ? true : false
     end
 
     # Flips to the next search page if there is one.
@@ -77,7 +78,7 @@ class SocialCrawler
     def next_page
       return false if final_page?
       next_button = @search_results_page.links_with(text: 'next')[0]
-      next_button.click
+      @search_results_page = next_button.click
     end
 
     private

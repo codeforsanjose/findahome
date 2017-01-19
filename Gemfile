@@ -37,6 +37,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'vcr'
   gem 'webmock'
+  gem 'rails-controller-testing'
 end
 
 group :development do
