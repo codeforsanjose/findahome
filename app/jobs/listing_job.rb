@@ -5,9 +5,6 @@ class ListingJob < ApplicationJob # rubocop:disable Style/Documentation
   # metadata for a listing and then store that metadata into
   # a database.
   #
-  # There is a sleep value added to each job in order to be respectful
-  # towards the social serve site owners.
-  #
   # @author Tyler Hampton
   # @since 0.1.0
   #
