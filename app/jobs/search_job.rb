@@ -1,6 +1,7 @@
 require './lib/social_crawler'
+require 'sidekiq'
 
-class SearchJob < ApplicationJob # rubocop:disable Style/Documentation
+class SearchJob # rubocop:disable Style/Documentation
   # The search job is fairly simple.
   #
   # It will instantiate a search Mechanize agent and then
@@ -15,8 +16,9 @@ class SearchJob < ApplicationJob # rubocop:disable Style/Documentation
   # @since 0.1.0
   #
   #
-  queue_as :default
-  Sidekiq.default_worker_options = { retry: 0 }
+  include Sidekiq::Worker
+  sidekiq_options retry: 1
+  sidekiq_retry_in { yield 1600 }
 
   def perform
     house_links = []
@@ -32,7 +34,7 @@ class SearchJob < ApplicationJob # rubocop:disable Style/Documentation
 
     enqueue_listing_jobs(house_links)
 
-    SearchJob.set(wait: 12.hours).perform_later
+    SearchJob.perform_in(12.hours)
   end
 
   # This function will take an array of house links
@@ -50,9 +52,9 @@ class SearchJob < ApplicationJob # rubocop:disable Style/Documentation
     house_links.each do |listing_url|
       counter += 1
       minute_count += 5 if (counter % 3).zero?
-      ListingJob.set(
-        wait: (rand(1..5) + minute_count).minutes
-      ).perform_later(listing_url)
+      ListingJob.perform_in(
+        (rand(1..5) + minute_count).minutes, listing_url
+      )
     end
     true
   end
