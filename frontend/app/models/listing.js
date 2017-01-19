@@ -72,5 +72,9 @@ export default DS.Model.extend({
   applicationFee: DS.attr('string'),
   dateAvailable: DS.attr('string'),
   flooringMaterials: DS.attr('string'),
-  otherAppliancesIncluded: DS.attr('string')
+  otherAppliancesIncluded: DS.attr('string'),
+  additional_property_options: DS.attr('string'),
+  social_url: DS.attr('string'),
+  shopping_venues: DS.attr('string'),
+  light_rail_station: DS.attr('string')
 });

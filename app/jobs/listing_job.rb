@@ -15,14 +15,15 @@ class ListingJob < ApplicationJob # rubocop:disable Style/Documentation
   queue_as :default
   Sidekiq.default_worker_options = { retry: 0 }
 
-  def perform(listing_url)
+  def perform(listing_url) # rubocop:disable Metrics/MethodLength
     @listing_agent = SocialCrawler::Listing.new(listing_url)
 
-    seconds = Random.rand(1..100)
-    sleep seconds
+    complete_data = @listing_agent.fetch_listing_metadata.merge(
+      social_url: listing_url
+    )
 
     begin
-      listing = Listing.new(@listing_agent.fetch_listing_metadata)
+      listing = Listing.new(complete_data)
       listing.save
     rescue Mechanize::ResponseCodeError => error
       puts "error fetching page: #{error}"

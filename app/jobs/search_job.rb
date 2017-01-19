@@ -27,7 +27,7 @@ class SearchJob < ApplicationJob # rubocop:disable Style/Documentation
     end
 
     house_links.flatten.each do |listing_url|
-      ListingJob.perform_later(listing_url)
+      ListingJob.set(wait: rand(1..60).minutes).perform_later(listing_url)
     end
   end
 end
