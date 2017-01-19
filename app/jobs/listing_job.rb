@@ -24,6 +24,7 @@ class ListingJob < ApplicationJob # rubocop:disable Style/Documentation
       listing.save
     rescue Mechanize::ResponseCodeError => error
       puts "error fetching page: #{error}"
+      ListingJob.set(wait: 1.hour).perform_later(listing_url)
       return
     end
   end
