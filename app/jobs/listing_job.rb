@@ -5,6 +5,9 @@ class ListingJob < ApplicationJob # rubocop:disable Style/Documentation
   # metadata for a listing and then store that metadata into
   # a database.
   #
+  # There is a sleep value added to each job in order to be respectful
+  # towards the social serve site owners.
+  #
   # @author Tyler Hampton
   # @since 0.1.0
   #
@@ -15,11 +18,13 @@ class ListingJob < ApplicationJob # rubocop:disable Style/Documentation
   def perform(listing_url)
     @listing_agent = SocialCrawler::Listing.new(listing_url)
 
-    seconds = Random.rand(1..100)
-    sleep seconds
+    # seconds = Random.rand(1..100)
+    # sleep seconds
 
     begin
-      puts @listing_agent.fetch_listing_metadata
+      pp @listing_agent.fetch_listing_metadata
+      listing = Listing.new(@listing_agent.fetch_listing_metadata)
+      listing.save
     rescue Mechanize::ResponseCodeError => error
       puts "error fetching page: #{error}"
     end

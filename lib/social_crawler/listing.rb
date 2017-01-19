@@ -1,3 +1,18 @@
+class String # rubocop:disable Style/Documentation
+  # It's easier to store and handle Booleans than different
+  # strings that represent true or false.
+  #
+  # This method will handle turning strings into boolean values.
+  #
+  # @return [Boolean]
+  def to_bool
+    return true if self =~ /^(true|t|yes|y|1|none)$/i
+    return false if empty? || self =~ /^(false|f|no|n|0)$/i
+
+    self
+  end
+end
+
 class SocialCrawler
   # A class for parsing a listing's metadata.
   #
@@ -153,7 +168,9 @@ class SocialCrawler
         match_datums.each do |datum|
           cell_content = cell.children[2].to_s
           cleansed_cell_content = cleanse(cell_content.to_s)
-          cleansed_cell_content[0] = ''
+          unless cleansed_cell_content.is_a?(TrueClass) || cleansed_cell_content.is_a?(FalseClass) # rubocop:disable Metrics/LineLength
+            cleansed_cell_content[0] = ''
+          end
 
           next unless cell_content.match(datum)
 
@@ -339,6 +356,7 @@ class SocialCrawler
         .delete("\t")
         .delete('\"')
         .strip
+        .to_bool
     end
 
     # One to one values that are matched via Regex.

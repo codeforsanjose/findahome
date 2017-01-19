@@ -39,7 +39,7 @@ RSpec.describe SocialCrawler::Listing do # rubocop:disable Metric/BlockLength
   it 'should spit out all the metadata for a listing' do
     VCR.use_cassette('listing_page') do
       metadata = @listing_agent.fetch_listing_metadata
-
+      pp metadata
       expect(metadata).to be_a(Hash)
     end
   end

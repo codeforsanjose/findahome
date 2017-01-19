@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170118223335) do
+ActiveRecord::Schema.define(version: 20170119025616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20170118223335) do
     t.boolean  "secured_entry_to_building"
     t.boolean  "automatic_entry_door"
     t.boolean  "accessible_elevators"
-    t.boolean  "unit_on_first_foor"
+    t.boolean  "unit_on_first_floor"
     t.boolean  "multi_story_unit"
     t.string   "bus_stop"
     t.boolean  "playground"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20170118223335) do
     t.boolean  "theater"
     t.boolean  "community_shuttle"
     t.boolean  "within_paratransit_route"
-    t.string   "sign_language_friendly_boolean"
+    t.boolean  "sign_language_friendly"
     t.boolean  "recreational_facilities"
     t.string   "name"
     t.string   "address"
