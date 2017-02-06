@@ -1,6 +1,6 @@
 # Find a Home
 
-The Find a Home project is an effort by a group within Code for San Jose to provide mobile and web applications that make finding affordable housing in the Bay Area not only easy but moderately fun.
+The Find a Home project is an effort by a group within Code for San Jose to provide mobile and web applications that make finding affordable housing in the Bay Area not only easy but also moderately fun.
 
 ## Why
 
