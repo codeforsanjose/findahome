@@ -78,4 +78,5 @@ The requests it sends out are stagged by one minute - i.e, one request per minut
 
 Sorry for the setup being so complicated! I plan on making everything easier to install and manage in the future!
 
+Made with :heart: by Code for San Jose
 ---
