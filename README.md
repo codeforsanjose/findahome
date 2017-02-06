@@ -26,8 +26,8 @@ I'll update this repo with a `CONTRIBUTIONS.md` soon!
 
 ## How to run this thing
 
-| Dependencies |      |
-|---------------------|
+Dependencies:
+
 | Ruby         | v2.3 |
 | Node         | v6   |
 | Postgres     | v9   |
