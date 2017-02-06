@@ -47,10 +47,11 @@ This will start the app but there won't be any data in it.
 
 1. Set an environment variable named `FINDAHOME_USE_PROXIES` to `false`.
 
-The listing collection mechanism is entirely contained within Sidekiq driven jobs. This means that you'll need to have a running instance of Sidekiq.
+The listing collection mechanism is entirely contained within Sidekiq driven jobs. That means that you'll need to have a running instance of Sidekiq.
 
 * Run `bundle exec sidekiq` in another tab while the Rails server is running.
 * Run `bundle exec rake search_job:enqueue` to start the listing collection process.
+* If you navigate to `localhost:3000` in your browser then you should see a simple listing of those, uh, listings.
 
 If you want to have a fancy UI to track jobs, create a `sidekiq.ru` file somewhere outside of the project directory - the `/tmp` directory is a good place.
 
@@ -71,7 +72,7 @@ And run `rackup sidekiq.ru` in yet another tab.
 
 **CAUTION:** Following the above steps may trigger rate limiting by Social Serve. You'll start to see jobs fail in the Sidekiq UI because the fetch listing requests will start to forward to a page that asks a user to enter a captcha in order to prove that they're not a robot. If you enter the captcha then you'll be good to go for another N requests. If you're testing the listing collection code then I encourage you to kill Sidekiq (CTRL+C in the terminal window running it) after five or ten collections.
 
-The requests it sends out are stagged by minute - i.e, one request per minute - in order to be respectful towards the site maintainers. In order to maintain that respect, try to limit how much you run the listing collection jobs. Hopefully, I'll have data seeding done soon so that all local development doesn't depend on running a few jobs.
+The requests it sends out are stagged by one minute - i.e, one request per minute - in order to be respectful towards the site maintainers. In order to maintain that respect, try to limit how often you run the listing collection jobs. Hopefully, I'll have data seeding done soon so that all local development doesn't depend on running a few jobs. The listing data will persist in postgres.
 
 Sorry for the setup being so complicated! I plan on making everything easier to install and manage in the future!
 
