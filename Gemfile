@@ -40,6 +40,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'vcr'
   gem 'webmock'
+  gem 'rubocop', require: false
 end
 
 group :development do

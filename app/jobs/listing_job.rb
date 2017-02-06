@@ -28,7 +28,8 @@ class ListingJob # rubocop:disable Style/Documentation
       logger.debug "error fetching page: #{error}"
     end
 
-    listing = Listing.new(complete_data)
-    listing.save
+    Listing.find_or_create_by(listing_id: complete_data[:listing_id]) do |listing|
+      listing.update_attributes(complete_data)
+    end
   end
 end

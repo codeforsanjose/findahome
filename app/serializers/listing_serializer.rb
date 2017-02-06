@@ -73,6 +73,10 @@ class ListingSerializer < ActiveModel::Serializer
              :date_available,
              :flooring_materials,
              :other_appliances_included,
+             :additional_property_options,
+             :shopping_venues,
+             :light_rail_station,
+             :social_url,
              :created_at,
              :updated_at
 end

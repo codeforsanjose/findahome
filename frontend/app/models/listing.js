@@ -73,8 +73,8 @@ export default DS.Model.extend({
   dateAvailable: DS.attr('string'),
   flooringMaterials: DS.attr('string'),
   otherAppliancesIncluded: DS.attr('string'),
-  additional_property_options: DS.attr('string'),
-  social_url: DS.attr('string'),
-  shopping_venues: DS.attr('string'),
-  light_rail_station: DS.attr('string')
+  additionalPropertyOptions: DS.attr('string'),
+  socialUrl: DS.attr('string'),
+  shoppingVenues: DS.attr('string'),
+  lightRailStation: DS.attr('string')
 });
