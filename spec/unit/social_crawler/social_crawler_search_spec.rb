@@ -27,13 +27,18 @@ RSpec.describe SocialCrawler::Search do # rubocop:disable Metric/BlockLength
     end
   end
 
-  it 'should detect if the current page is the last page' do
-    expect(@search_agent.final_page?).to be(false)
-  end
-
   it 'should transition to the next page' do
     VCR.use_cassette('next_search_page') do
       expect(@search_agent.next_page).to be_a(Mechanize::Page)
+    end
+  end
+
+  it 'should detect if the current page is the last page' do
+    VCR.use_cassette('next_search_cycle') do
+      @search_agent.fetch_search_results_page
+      expect(@search_agent.final_page?).to be(false)
+      @search_agent.next_page
+      expect(@search_agent.final_page?).to be(true)
     end
   end
 end

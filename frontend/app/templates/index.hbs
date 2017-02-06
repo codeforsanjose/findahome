@@ -1,1 +1,4 @@
-<p>hi</p>
+{{#each model as |listing|}}
+  <p> Come live at {{listing.apartmentName}}!</p>
+  <p> We're located at {{listing.address}}!</p>
+{{/each}}

@@ -1,3 +1,18 @@
+class String # rubocop:disable Style/Documentation
+  # It's easier to store and handle Booleans than different
+  # strings that represent true or false.
+  #
+  # This method will handle turning strings into boolean values.
+  #
+  # @return [Boolean]
+  def to_bool
+    return true if self =~ /^(true|t|yes|y|1|none)$/im
+    return false if empty? || self =~ /^(false|f|no|n|0)$/im
+
+    self
+  end
+end
+
 class SocialCrawler
   # A class for parsing a listing's metadata.
   #
@@ -20,11 +35,12 @@ class SocialCrawler
     attr_reader :attributes
     attr_reader :listing_url
     attr_reader :table_cells
-    attr_reader :address_div
+    attr_reader :page
 
-    def initialize(listing_url)
+    def initialize(listing_url:, proxy: nil)
       @listing_url = listing_url
       @listing_agent = Mechanize.new
+      @listing_agent.set_proxy(proxy[:ip], proxy[:port]) if proxy
     end
 
     # This is a top-level orchestrator method that will return
@@ -42,7 +58,9 @@ class SocialCrawler
         parse_one_to_one,
         parse_address,
         parse_question_marks,
-        parse_row_links
+        parse_row_links,
+        parse_listing_id,
+        { social_url: @listing_url }
       ]
 
       data_hashes.inject(&:merge)
@@ -58,9 +76,10 @@ class SocialCrawler
     #
     #
     def fetch_listing_page
-      page = @listing_agent.get(@listing_url)
+      @listing_agent.user_agent_alias = Mechanize::AGENT_ALIASES.keys.sample
+
+      @page = @listing_agent.get(@listing_url)
       collect_table_cells(page)
-      collect_address_div(page)
       page
     end
 
@@ -72,19 +91,6 @@ class SocialCrawler
     #
     def collect_table_cells(page)
       @table_cells = page.search('td')
-    end
-
-    # Collects the address div from a listing page. There
-    # is only a single element of this type on the page
-    # so it's easy enough to grab the first result from the
-    # search.
-    #
-    # @param
-    # @return [Mechanize]
-    #
-    #
-    def collect_address_div(page)
-      @address_div = page.search('div.h2')[0]
     end
 
     # A large amount of data can be returned by cycling
@@ -153,7 +159,9 @@ class SocialCrawler
         match_datums.each do |datum|
           cell_content = cell.children[2].to_s
           cleansed_cell_content = cleanse(cell_content.to_s)
-          cleansed_cell_content[0] = ''
+          unless cleansed_cell_content.is_a?(TrueClass) || cleansed_cell_content.is_a?(FalseClass) # rubocop:disable Metrics/LineLength
+            cleansed_cell_content[0] = ''
+          end
 
           next unless cell_content.match(datum)
 
@@ -281,17 +289,29 @@ class SocialCrawler
 
     # There is only a single div element on every listing page
     # that has the h2 CSS class applied to it and, you guessed it,
-    # that's the address portion of the page.
+    # that's the address portion of the page. How we grab the address
+    # and name depend on whether or not the listing is a house, duplex
+    # or apartment.
     #
     # @param
     # @return [String] The address of the listing.
     #
     #
     def parse_address
-      {
-        name: cleanse(@address_div.children[0].to_s),
-        address: cleanse(@address_div.children[2].to_s)
-      }
+      address_div = @page.search('div.h2')[0]
+
+      property_type = parse_one_to_one[:property_type]
+      if property_type.match(/house/im) || property_type.match(/duplex/im)
+        {
+          address: cleanse(address_div.children[0].to_s),
+          apartment_name: 'N/A'
+        }
+      else
+        {
+          address: cleanse(address_div.children[2].to_s),
+          apartment_name: cleanse(address_div.children[0].to_s)
+        }
+      end
     end
 
     def parse_data_same_row; end
@@ -301,6 +321,18 @@ class SocialCrawler
     def parse_web; end
 
     def parse_email; end
+
+    # As far as I can tell, the listing id is a semi-unique, six digit
+    # identifier in a listing's URL
+    #
+    # @param
+    # @return [Hash] A six digit identifier attached to a listing_id key
+    #
+    #
+    def parse_listing_id
+      listing_id = @listing_url.match(/\d{6}/)
+      { listing_id: listing_id.to_s.to_i }
+    end
 
     private
 
@@ -339,6 +371,7 @@ class SocialCrawler
         .delete("\t")
         .delete('\"')
         .strip
+        .to_bool
     end
 
     # One to one values that are matched via Regex.

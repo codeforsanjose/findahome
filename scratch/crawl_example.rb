@@ -5,6 +5,7 @@ base_url = 'http://www.socialserve.com'
 starting_url = "#{base_url}/tenant/CA/Search.html?type=rental&region_id=32090"
 
 agent = Mechanize.new
+agent.set_proxy '147.75.209.56', '10200'
 
 search_page = agent.get(starting_url)
 
