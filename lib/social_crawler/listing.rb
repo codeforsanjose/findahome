@@ -6,8 +6,8 @@ class String # rubocop:disable Style/Documentation
   #
   # @return [Boolean]
   def to_bool
-    return true if self =~ /^(true|t|yes|y|1|none)$/i
-    return false if empty? || self =~ /^(false|f|no|n|0)$/i
+    return true if self =~ /^(true|t|yes|y|1|none)$/im
+    return false if empty? || self =~ /^(false|f|no|n|0)$/im
 
     self
   end

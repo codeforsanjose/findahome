@@ -20,7 +20,7 @@ class SearchJob # rubocop:disable Style/Documentation
   def perform
     house_links = []
 
-    proxy = ENV['FINDAHOME_USE_PROXIES'] ? generate_proxy : nil
+    proxy = ENV['FINDAHOME_USE_PROXIES'] =~ 'true' ? generate_proxy : nil
     @search_agent = SocialCrawler::Search.new(proxy: proxy)
     @search_agent.fetch_search_results_page
 
@@ -48,7 +48,7 @@ class SearchJob # rubocop:disable Style/Documentation
   def enqueue_listing_jobs(house_links)
     counter = 0
 
-    proxy = ENV['FINDAHOME_USE_PROXIES'] ? generate_proxy : nil
+    proxy = ENV['FINDAHOME_USE_PROXIES'] =~ 'true' ? generate_proxy : nil
     house_links.each do |listing_url|
       counter += 1
       proxy = generate_proxy if (counter % 20).zero? && !proxy.nil?
