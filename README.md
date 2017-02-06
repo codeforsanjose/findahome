@@ -28,10 +28,12 @@ I'll update this repo with a `CONTRIBUTIONS.md` soon!
 
 Dependencies:
 
-| Ruby         | v2.3 |
-| Node         | v6   |
-| Postgres     | v9   |
-| Redis        | v3   |
+| Dependency | Version |
+|------------|---------|
+| Ruby       | v2.3    |
+| Node       | v6      |
+| Postgres   | v9      |
+| Redis      | v3      |
 
 **Steps to start the API and frontend:**
 
