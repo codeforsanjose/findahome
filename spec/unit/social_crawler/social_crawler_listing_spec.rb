@@ -3,11 +3,9 @@ require_relative '../../../lib/social_crawler'
 RSpec.describe SocialCrawler::Listing do # rubocop:disable Metric/BlockLength
   before(:all) do
     VCR.use_cassette('listing_page') do
-      @search_agent = SocialCrawler::Search.new
-      @search_agent.fetch_search_results_page
-      listing_url = @search_agent.collect_house_links.first
-
-      @listing_agent = SocialCrawler::Listing.new(listing_url)
+      @listing_agent = SocialCrawler::Listing.new(
+        listing_url: 'http://www.socialserve.com/dbh/ViewUnit/844787?hm=A32L2wEI'
+      )
       @listing_agent.fetch_listing_page
     end
   end

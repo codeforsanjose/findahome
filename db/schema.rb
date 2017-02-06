@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170119051106) do
+ActiveRecord::Schema.define(version: 20170206003719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 20170119051106) do
     t.boolean  "within_paratransit_route"
     t.boolean  "sign_language_friendly"
     t.boolean  "recreational_facilities"
-    t.string   "name"
+    t.string   "apartment_name"
     t.string   "address"
     t.boolean  "criminal_check"
     t.boolean  "credit_check"
@@ -94,6 +94,8 @@ ActiveRecord::Schema.define(version: 20170119051106) do
     t.string   "shopping_venues"
     t.string   "social_url"
     t.string   "additional_property_options"
+    t.integer  "listing_id"
+    t.index ["listing_id"], name: "index_listings_on_listing_id", unique: true, using: :btree
   end
 
 end

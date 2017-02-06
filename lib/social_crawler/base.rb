@@ -11,7 +11,7 @@ require 'mechanize'
 class SocialCrawler
   attr_reader :base_url
 
-  def initialize
+  def initialize(*)
     @base_url = 'http://www.socialserve.com'
   end
 end

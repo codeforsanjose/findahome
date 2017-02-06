@@ -58,7 +58,7 @@ export default DS.Model.extend({
   withinParatransitRoute: DS.attr('boolean'),
   signLanguageFriendly: DS.attr('boolean'),
   recreationalFacilities: DS.attr('boolean'),
-  name: DS.attr('string'),
+  apartmentName: DS.attr('string'),
   address: DS.attr('string'),
   criminalCheck: DS.attr('boolean'),
   creditCheck: DS.attr('boolean'),

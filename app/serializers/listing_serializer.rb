@@ -1,5 +1,7 @@
 class ListingSerializer < ActiveModel::Serializer
   attributes :id,
+             :listing_id,
+             :property_type,
              :bedrooms,
              :bathrooms,
              :lease_length,
@@ -56,7 +58,7 @@ class ListingSerializer < ActiveModel::Serializer
              :within_paratransit_route,
              :sign_language_friendly,
              :recreational_facilities,
-             :name,
+             :apartment_name,
              :address,
              :criminal_check,
              :credit_check,

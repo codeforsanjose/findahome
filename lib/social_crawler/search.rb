@@ -17,9 +17,10 @@ class SocialCrawler
     attr_reader :search_results_page
     attr_reader :search_url
 
-    def initialize
+    def initialize(proxy: nil)
       super
       @agent = Mechanize.new
+      @agent.set_proxy(proxy[:ip], proxy[:port]) if proxy
       @search_url = "#{@base_url}" \
         '/tenant/CA/Search.html?type=rental&region_id=32090'
     end
