@@ -22,4 +22,53 @@ The [mobile application](https://github.com/codeforsanjose/findahomeMobile) is b
 
 I'll update this repo with a CONTRIBUTING.md sometime... soon.
 
+## Running the Rails API
+
+Dependencies:
+
+| Ruby     | v2.3 |
+|----------|------|
+| Node     | v6   |
+| Postgres | v9   |
+| Redis    | v3   |
+
+Steps to start the API and frontend:
+
+1. Git clone the sucka'
+2. `bundle install`
+3. Set an environment variable named `FINDAHOME_USE_PROXIES` to `false`.
+4. `rake ember:install`
+5. `bundle exec rails db:setup`
+6. `bundle exec rails s`
+
+This will start the app but there won't be any data in it.
+
+Steps to start the listing collection process:
+
+The listing collection mechanism is entirely contained within Sidekiq driven jobs. This means that you'll need to have a running instance of Sidekiq.
+
+* So run `bundle exec sidekiq` in another tab while the rails server is running.
+* Then run `bundle exec rake search_job:enqueue` to start the listing collection process.
+
+If you want to have a fancy UI to track jobs, create a `sidekiq.ru` file somewhere outside of the project directory. The `/tmp` directory is a good place.
+
+Then fill that file with this:
+
+```
+require 'sidekiq'
+
+Sidekiq.configure_client do |config|
+  config.redis = { :size => 1 }
+end
+
+require 'sidekiq/web'
+run Sidekiq::Web
+```
+
+And run `rackup sidekiq.ru` in yet another tab.
+
+**CAUTION:** Following the above steps may trigger rate limiting by social serve. You'll start to see jobs fail in the Sidekiq UI because the fetch listing requests will start to forward to a page that has a user enter a captcha in order to prove that they're not a robot. If you enter the captcha then you'll be good to go for another N requests. If you're testing the listing collection code then I encourage you to kill Sidekiq (CTRL+C in the terminal window running it) after five or ten collections.
+
+Sorry for the setup being so complicated! I plan on making everything easier to install and manage in the future!
+
 ---
