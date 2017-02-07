@@ -1,4 +1,4 @@
-class String # rubocop:disable Style/Documentation
+class String
   # It's easier to store and handle Booleans than different
   # strings that represent true or false.
   #
@@ -24,14 +24,10 @@ class SocialCrawler
   # @authors [Tyler Hampton, Yan Yin Choy]
   # @since 0.1.0
   #
-  # rubocop:disable Metrics/LineLength
-  #
   # @param [Mechanize] table_cells A Mechanize search against all table cells in a page.
   #
-  # rubocop:enable Metrics/LineLength
   #
-  #
-  class Listing < SocialCrawler # rubocop:disable Metrics/ClassLength, Metrics/LineLength
+  class Listing < SocialCrawler # rubocop:disable Metrics/ClassLength
     attr_reader :attributes
     attr_reader :listing_url
     attr_reader :table_cells
@@ -112,7 +108,7 @@ class SocialCrawler
     # @return [Hash] A collection of housing metadata.
     #
     #
-    def parse_one_to_one # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+    def parse_one_to_one
       complete_data = {}
 
       @table_cells.each_with_index do |cell, index|
@@ -151,7 +147,7 @@ class SocialCrawler
     # @return [Hash] A collection of housing metadata.
     #
     #
-    def parse_question_marks # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/LineLength
+    def parse_question_marks
       match_datums = question_match_datums
 
       complete_data = {}
@@ -159,7 +155,7 @@ class SocialCrawler
         match_datums.each do |datum|
           cell_content = cell.children[2].to_s
           cleansed_cell_content = cleanse(cell_content.to_s)
-          unless cleansed_cell_content.is_a?(TrueClass) || cleansed_cell_content.is_a?(FalseClass) # rubocop:disable Metrics/LineLength
+          unless cleansed_cell_content.is_a?(TrueClass) || cleansed_cell_content.is_a?(FalseClass)
             cleansed_cell_content[0] = ''
           end
 
@@ -188,7 +184,7 @@ class SocialCrawler
     # @return [Hash] A collection of housing metadata.
     #
     #
-    def parse_row_links # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/LineLength
+    def parse_row_links
       match_datums = [
         'Flooring Materials',
         'Additional Property Options',
@@ -224,12 +220,8 @@ class SocialCrawler
     # parsing so this function will determine whether or not to skip
     # the first cell after a matched datum.
     #
-    # rubocop:disable Metric/LineLength
-    #
     # @param [Nokogiri::XML::Element] table_cell_match_content The matched content within a cell.
     # @return [Boolean] Indication of accessibility icon presence.
-    #
-    # rubocop:enable Metric/LineLength
     #
     #
     def element_concerns_accessibility?(table_cell_match_content)
@@ -262,14 +254,11 @@ class SocialCrawler
     # 'bedrooms' string exists inside that Nokogiri object. Then the element
     # next to that table cell (<td><p>2<td><p>) is parsed out.
     #
-    # rubocop:disable Metric/LineLength
-    #
     # @param [Nokogiri::XML::Element] cell_first_content The first cell match
     # @param [Nokogiri::XML::Element] cell_next_content The cell next to the first cell
     # @param [Array<String>] match_datums A list of phrases/words to match against
     # @return [Nokogiri::XML::Element] A child element that has valuable data
     #
-    # rubocop:disbale Metric/LineLength
     #
     def determine_child_placements(cell_first_content, cell_next_content, match_datums)
       if match_datums.include?(cell_first_content)
@@ -379,7 +368,7 @@ class SocialCrawler
     # @return [Array] Datums to use for matching.
     #
     #
-    def one_to_one_match_datums # rubocop:disable Metrics/MethodLength
+    def one_to_one_match_datums
       datums = [
         'Property Type',
         'Bedrooms',
@@ -452,7 +441,7 @@ class SocialCrawler
       datums
     end
 
-    def question_match_datums # rubocop:disable Metrics/MethodLength
+    def question_match_datums
       datums = [
         'Criminal Check\:',
         'Pets\:',
