@@ -12,7 +12,6 @@ module.exports = function(environment) {
     'connect-src': "'self' maps.gstatic.com",
     'img-src': "'self' *.googleapis.com maps.gstatic.com csi.gstatic.com",
     'style-src': "'self' 'unsafe-inline' fonts.googleapis.com maps.gstatic.com",
-
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -30,9 +29,6 @@ module.exports = function(environment) {
     }
   };
 
-  ENV.googleMap = {
-    apiKey: ENV.GMAPS_KEY
-  };
 
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
@@ -40,6 +36,10 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+
+    ENV.googleMap = {
+      apiKey: process.env.GMAPS_KEY
+    };
   }
 
   if (environment === 'test') {
