@@ -30,6 +30,10 @@ module.exports = function(environment) {
     }
   };
 
+  ENV.googleMap = {
+    apiKey: ENV.GMAPS_KEY
+  };
+
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;

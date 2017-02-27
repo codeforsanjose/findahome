@@ -41,19 +41,14 @@
     <div id="left-column" class="twelve wide column">
         <div id="maps-row" class="stretched row">
             <div id="maps-column" class="column">
-                <div class="ui segment">
-                    {{g-maps name="my-map" lat=lat lng=lng zoom=zoom}}
-                </div>
+                {{g-maps name="my-map" markers=markers lat=lat lng=lng zoom=zoom}}
             </div>
         </div>
     </div>
     <div id="right-column" class="four wide column">
         <div id="listing-info-row" class="stretched row">
             <div id="listing-info-column" class="column">
-                <div class="ui segment">
-                    <p> Apartments for San Jose </p>
-                    <div class="label"> Rent {{input value=progressOne type="range" min=0 max=100}} </div>
-                </div>
+                {{listing-info-sidebar}}
             </div>
         </div>
     </div>

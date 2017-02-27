@@ -1,0 +1,704 @@
+
+
+/*******************************
+             Theme
+ *******************************/
+
+.ui.range:not(.vertical) {
+  width: 100%;
+  padding: 1em 0.5em;
+}
+.ui.range {
+  position: relative;
+}
+.ui.range:focus {
+  outline: 0;
+}
+.ui.range .inner {
+  position: relative;
+  z-index: 2;
+}
+.ui.range:not(.vertical) .inner {
+  height: 1.5em;
+}
+.ui.range .inner:hover {
+  cursor: auto;
+}
+.ui.range .inner .track {
+  position: absolute;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.ui.range:not(.vertical) .inner .track {
+  width: 100%;
+  height: 0.4em;
+  top: 0.55em;
+  left: 0;
+}
+.ui.range .inner .track-fill {
+  position: absolute;
+  border-radius: 4px;
+  background-color: #1B1C1D;
+}
+.ui.range:not(.vertical) .inner .track-fill {
+  width: 0;
+  height: 0.4em;
+  top: 0.55em;
+  left: 0;
+}
+.ui.range .inner .thumb {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 1.5em;
+  width: 1.5em;
+  background: #FFFFFF -webkit-linear-gradient(transparent, rgba(0, 0, 0, 0.05));
+  background: #FFFFFF linear-gradient(transparent, rgba(0, 0, 0, 0.05));
+  border-radius: 100%;
+  box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15), 0 0 0 1px rgba(34, 36, 38, 0.15) inset;
+  -webkit-transition: background 0.3s ease;
+  transition: background 0.3s ease;
+}
+.ui.range:not(.disabled) .inner .thumb:hover {
+  pointer: pointer;
+  background: #f2f2f2 -webkit-linear-gradient(transparent, rgba(0, 0, 0, 0.05));
+  background: #f2f2f2 linear-gradient(transparent, rgba(0, 0, 0, 0.05));
+}
+.ui.range:not(.disabled):focus .inner .thumb {
+  background: #f2f2f2 -webkit-linear-gradient(transparent, rgba(0, 0, 0, 0.05));
+  background: #f2f2f2 linear-gradient(transparent, rgba(0, 0, 0, 0.05));
+}
+
+
+/*******************************
+            States
+*******************************/
+
+
+/*--------------
+     Disabled
+---------------*/
+
+.ui.range.disabled {
+  opacity: 0.5;
+}
+.ui.range.disabled .inner:hover {
+  cursor: auto;
+}
+.ui.range.disabled .inner .track-fill {
+  background: #ccc;
+}
+
+/*--------------
+    Reversed
+---------------*/
+
+.ui.range.reversed .inner .track-fill {
+  left: auto;
+  right: 0;
+}
+.ui.range.reversed .inner .thumb {
+  left: auto;
+  right: 0;
+}
+.ui.labeled.range.reversed > .labels .label {
+  -webkit-transform: translate(-100%, -100%);
+          transform: translate(-100%, -100%);
+}
+
+
+/*******************************
+           Variations
+*******************************/
+
+
+/*--------------
+    Vertical
+---------------*/
+
+.ui.range.vertical {
+  height: 100%;
+  padding: 0.5em 1em;
+}
+.ui.range.vertical .inner {
+  width: 1.5em;
+  height: 100%;
+}
+.ui.range.vertical .inner .track {
+  height: 100%;
+  width: 0.4em;
+  left: 0.55em;
+  top: 0;
+}
+.ui.range.vertical .inner .track-fill {
+  height: 0;
+  width: 0.4em;
+  left: 0.55em;
+  top: 0;
+}
+
+/* Vertical Reversed */
+.ui.range.vertical.reversed .inner .thumb {
+  top: auto;
+  bottom: 0;
+}
+.ui.range.vertical.reversed .inner .track-fill {
+  top: auto;
+  bottom: 0;
+}
+
+/*--------------
+    Labeled
+---------------*/
+
+.ui.labeled.range > .labels {
+  height: 1.5em;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+}
+.ui.labeled.range:not(.vertical) > .labels {
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+.ui.labeled.range > .labels .label {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  position: absolute;
+  -webkit-transform: translate(-50%, -100%);
+          transform: translate(-50%, -100%);
+}
+.ui.labeled.range > .labels .label:after {
+  content: ' ';
+  height: 1.5em;
+  width: 1px;
+  background: #ccc;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+}
+
+/* Vertical Labels */
+.ui.labeled.vertical.range > .labels {
+  width: 1.5em;
+  height: 100%;
+  left: 50%;
+  top: 0;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+.ui.labeled.vertical.range > .labels .label {
+  -webkit-transform: translate(-100%, -1px);
+          transform: translate(-100%, -1px);
+}
+.ui.labeled.vertical.range > .labels .label:after {
+  width: 1.5em;
+  height: 1px;
+  left: 100%;
+  top: 50%;
+}
+
+/*--------------
+    Hover
+---------------*/
+
+.ui.hover.range .inner .thumb {
+  opacity: 0;
+  -webkit-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
+}
+.ui.hover.range:not(.disabled):hover .inner .thumb,
+.ui.hover.range:not(.disabled):focus .inner .thumb {
+  opacity: 1;
+}
+
+/*--------------
+    Inverted
+---------------*/
+
+.ui.inverted.range .inner .track-fill {
+  background-color: #545454;
+}
+.ui.inverted.range .inner .track {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/*--------------
+     Colors
+---------------*/
+
+
+/* Red */
+.ui.red.range .inner .track-fill {
+  background-color: #DB2828;
+}
+.ui.red.inverted.range .inner .track-fill {
+  background-color: #FF695E;
+}
+
+/* Orange */
+.ui.orange.range .inner .track-fill {
+  background-color: #F2711C;
+}
+.ui.orange.inverted.range .inner .track-fill {
+  background-color: #FF851B;
+}
+
+/* Yellow */
+.ui.yellow.range .inner .track-fill {
+  background-color: #FBBD08;
+}
+.ui.yellow.inverted.range .inner .track-fill {
+  background-color: #FFE21F;
+}
+
+/* Olive */
+.ui.olive.range .inner .track-fill {
+  background-color: #B5CC18;
+}
+.ui.olive.inverted.range .inner .track-fill {
+  background-color: #D9E778;
+}
+
+/* Green */
+.ui.green.range .inner .track-fill {
+  background-color: #21BA45;
+}
+.ui.green.inverted.range .inner .track-fill {
+  background-color: #2ECC40;
+}
+
+/* Teal */
+.ui.teal.range .inner .track-fill {
+  background-color: #00B5AD;
+}
+.ui.teal.inverted.range .inner .track-fill {
+  background-color: #6DFFFF;
+}
+
+/* Blue */
+.ui.blue.range .inner .track-fill {
+  background-color: #2185D0;
+}
+.ui.blue.inverted.range .inner .track-fill {
+  background-color: #54C8FF;
+}
+
+/* Violet */
+.ui.violet.range .inner .track-fill {
+  background-color: #6435C9;
+}
+.ui.violet.inverted.range .inner .track-fill {
+  background-color: #A291FB;
+}
+
+/* Purple */
+.ui.purple.range .inner .track-fill {
+  background-color: #A333C8;
+}
+.ui.purple.inverted.range .inner .track-fill {
+  background-color: #DC73FF;
+}
+
+/* Pink */
+.ui.pink.range .inner .track-fill {
+  background-color: #E03997;
+}
+.ui.pink.inverted.range .inner .track-fill {
+  background-color: #FF8EDF;
+}
+
+/* Brown */
+.ui.brown.range .inner .track-fill {
+  background-color: #A5673F;
+}
+.ui.brown.inverted.range .inner .track-fill {
+  background-color: #D67C1C;
+}
+
+/* Grey */
+.ui.grey.range .inner .track-fill {
+  background-color: #767676;
+}
+.ui.grey.inverted.range .inner .track-fill {
+  background-color: #DCDDDE;
+}
+
+/* Black */
+.ui.black.range .inner .track-fill {
+  background-color: #1B1C1D;
+}
+.ui.black.inverted.range .inner .track-fill {
+  background-color: #545454;
+}
+
+/*--------------
+     Basic
+---------------*/
+
+
+/* Standard */
+.ui.range.basic .inner .thumb {
+  background-color: #1B1C1D;
+}
+.ui.range.basic .inner .thumb:hover,
+.ui.range.basic:focus .inner .thumb {
+  background-color: #27292a;
+}
+
+/* Red */
+.ui.red.range.basic .inner .thumb {
+  background-color: #DB2828;
+}
+.ui.red.range.basic .inner .thumb:hover,
+.ui.red.range.basic:focus .inner .thumb {
+  background-color: #d01919;
+}
+
+/* Orange */
+.ui.orange.range.basic .inner .thumb {
+  background-color: #F2711C;
+}
+.ui.orange.range.basic .inner .thumb:hover,
+.ui.orange.range.basic:focus .inner .thumb {
+  background-color: #f26202;
+}
+
+/* Yellow */
+.ui.yellow.range.basic .inner .thumb {
+  background-color: #FBBD08;
+}
+.ui.yellow.range.basic .inner .thumb:hover,
+.ui.yellow.range.basic:focus .inner .thumb {
+  background-color: #eaae00;
+}
+
+/* Olive */
+.ui.olive.range.basic .inner .thumb {
+  background-color: #B5CC18;
+}
+.ui.olive.range.basic .inner .thumb:hover,
+.ui.olive.range.basic:focus .inner .thumb {
+  background-color: #a7bd0d;
+}
+
+/* Green */
+.ui.green.range.basic .inner .thumb {
+  background-color: #21BA45;
+}
+.ui.green.range.basic .inner .thumb:hover,
+.ui.green.range.basic:focus .inner .thumb {
+  background-color: #16ab39;
+}
+
+/* Teal */
+.ui.teal.range.basic .inner .thumb {
+  background-color: #00B5AD;
+}
+.ui.teal.range.basic .inner .thumb:hover,
+.ui.teal.range.basic:focus .inner .thumb {
+  background-color: #009c95;
+}
+
+/* Blue */
+.ui.blue.range.basic .inner .thumb {
+  background-color: #2185D0;
+}
+.ui.blue.range.basic .inner .thumb:hover,
+.ui.blue.range.basic:focus .inner .thumb {
+  background-color: #1678c2;
+}
+
+/* Violet */
+.ui.violet.range.basic .inner .thumb {
+  background-color: #6435C9;
+}
+.ui.violet.range.basic .inner .thumb:hover,
+.ui.violet.range.basic:focus .inner .thumb {
+  background-color: #5829bb;
+}
+
+/* Purple */
+.ui.purple.range.basic .inner .thumb {
+  background-color: #A333C8;
+}
+.ui.purple.range.basic .inner .thumb:hover,
+.ui.purple.range.basic:focus .inner .thumb {
+  background-color: #9627ba;
+}
+
+/* Pink */
+.ui.pink.range.basic .inner .thumb {
+  background-color: #E03997;
+}
+.ui.pink.range.basic .inner .thumb:hover,
+.ui.pink.range.basic:focus .inner .thumb {
+  background-color: #e61a8d;
+}
+
+/* Brown */
+.ui.brown.range.basic .inner .thumb {
+  background-color: #A5673F;
+}
+.ui.brown.range.basic .inner .thumb:hover,
+.ui.brown.range.basic:focus .inner .thumb {
+  background-color: #975b33;
+}
+
+/* Grey */
+.ui.grey.range.basic .inner .thumb {
+  background-color: #767676;
+}
+.ui.grey.range.basic .inner .thumb:hover,
+.ui.grey.range.basic:focus .inner .thumb {
+  background-color: #838383;
+}
+
+/* Black */
+.ui.black.range.basic .inner .thumb {
+  background-color: #1B1C1D;
+}
+.ui.black.range.basic .inner .thumb:hover,
+.ui.black.range.basic:focus .inner .thumb {
+  background-color: #27292a;
+}
+
+/*--------------
+  Basic Inverted
+---------------*/
+
+
+/* Standard */
+.ui.inverted.range.basic .inner .thumb {
+  background-color: #545454;
+}
+.ui.inverted.range.basic .inner .thumb:hover,
+.ui.inverted.range.basic:focus .inner .thumb {
+  background-color: #474747;
+}
+
+/* Red */
+.ui.red.inverted.range.basic .inner .thumb {
+  background-color: #FF695E;
+}
+.ui.red.inverted.range.basic .inner .thumb:hover,
+.ui.red.inverted.range.basic:focus .inner .thumb {
+  background-color: #ff5144;
+}
+
+/* Orange */
+.ui.orange.inverted.range.basic .inner .thumb {
+  background-color: #FF851B;
+}
+.ui.orange.inverted.range.basic .inner .thumb:hover,
+.ui.orange.inverted.range.basic:focus .inner .thumb {
+  background-color: #ff7701;
+}
+
+/* Yellow */
+.ui.yellow.inverted.range.basic .inner .thumb {
+  background-color: #FFE21F;
+}
+.ui.yellow.inverted.range.basic .inner .thumb:hover,
+.ui.yellow.inverted.range.basic:focus .inner .thumb {
+  background-color: #ffdf05;
+}
+
+/* Olive */
+.ui.olive.inverted.range.basic .inner .thumb {
+  background-color: #D9E778;
+}
+.ui.olive.inverted.range.basic .inner .thumb:hover,
+.ui.olive.inverted.range.basic:focus .inner .thumb {
+  background-color: #d8ea5c;
+}
+
+/* Green */
+.ui.green.inverted.range.basic .inner .thumb {
+  background-color: #2ECC40;
+}
+.ui.green.inverted.range.basic .inner .thumb:hover,
+.ui.green.inverted.range.basic:focus .inner .thumb {
+  background-color: #22be34;
+}
+
+/* Teal */
+.ui.teal.inverted.range.basic .inner .thumb {
+  background-color: #6DFFFF;
+}
+.ui.teal.inverted.range.basic .inner .thumb:hover,
+.ui.teal.inverted.range.basic:focus .inner .thumb {
+  background-color: #54ffff;
+}
+
+/* Blue */
+.ui.blue.inverted.range.basic .inner .thumb {
+  background-color: #54C8FF;
+}
+.ui.blue.inverted.range.basic .inner .thumb:hover,
+.ui.blue.inverted.range.basic:focus .inner .thumb {
+  background-color: #3ac0ff;
+}
+
+/* Violet */
+.ui.violet.inverted.range.basic .inner .thumb {
+  background-color: #A291FB;
+}
+.ui.violet.inverted.range.basic .inner .thumb:hover {
+  background-color: #8a73ff;
+}
+
+/* Purple */
+.ui.purple.inverted.range.basic .inner .thumb {
+  background-color: #DC73FF;
+}
+.ui.purple.inverted.range.basic .inner .thumb:hover,
+.ui.purple.inverted.range.basic:focus .inner .thumb {
+  background-color: #d65aff;
+}
+
+/* Pink */
+.ui.pink.inverted.range.basic .inner .thumb {
+  background-color: #FF8EDF;
+}
+.ui.pink.inverted.range.basic .inner .thumb:hover,
+.ui.pink.inverted.range.basic:focus .inner .thumb {
+  background-color: #ff74d8;
+}
+
+/* Brown */
+.ui.brown.inverted.range.basic .inner .thumb {
+  background-color: #D67C1C;
+}
+.ui.brown.inverted.range.basic .inner .thumb:hover,
+.ui.brow.inverted.range.basic:focus .inner .thumb {
+  background-color: #c86f11;
+}
+
+/* Grey */
+.ui.grey.inverted.range.basic .inner .thumb {
+  background-color: #DCDDDE;
+}
+.ui.grey.inverted.range.basic .inner .thumb:hover,
+.ui.grey.inverted.range.basic:focus .inner .thumb {
+  background-color: #cfd0d2;
+}
+
+/* Black */
+.ui.black.inverted.range.basic .inner .thumb {
+  background-color: #545454;
+}
+.ui.black.inverted.range.basic .inner .thumb:hover,
+.ui.black.inverted.range.basic:focus .inner .thumb {
+  background-color: #474747;
+}
+
+/*--------------
+     Sizing
+---------------*/
+
+
+/* Small */
+.ui.range.small .inner .thumb {
+  height: 1em;
+  width: 1em;
+}
+.ui.range.small:not(.vertical) .inner {
+  height: 1em;
+}
+.ui.range.small:not(.vertical) .inner .track,
+.ui.range.small:not(.vertical) .inner .track-fill {
+  height: 0.3em;
+  top: 0.35em;
+}
+.ui.small.labeled.range:not(.vertical) > .labels,
+.ui.small.labeled.range:not(.vertical) > .labels .label:after {
+  height: 1em;
+}
+
+/* Small Vertical */
+.ui.range.small.vertical .inner {
+  width: 1em;
+}
+.ui.range.small.vertical .inner .track,
+.ui.range.small.vertical .inner .track-fill {
+  width: 0.3em;
+  left: 0.35em;
+}
+.ui.small.labeled.range.vertical > .labels,
+.ui.small.labeled.range.vertical > .labels .label:after {
+  width: 1em;
+}
+
+/* Large */
+.ui.range.large .inner .thumb {
+  height: 2em;
+  width: 2em;
+}
+.ui.range.large:not(.vertical) .inner {
+  height: 2em;
+}
+.ui.range.large:not(.vertical) .inner .track,
+.ui.range.large:not(.vertical) .inner .track-fill {
+  height: 0.5em;
+  top: 0.75em;
+}
+.ui.large.labeled.range:not(.vertical) > .labels,
+.ui.large.labeled.range:not(.vertical) > .labels .label:after {
+  height: 2em;
+}
+
+/* Large Vertical */
+.ui.range.large.vertical .inner {
+  width: 2em;
+}
+.ui.range.large.vertical .inner .track,
+.ui.range.large.vertical .inner .track-fill {
+  width: 0.5em;
+  left: 0.75em;
+}
+.ui.large.labeled.range.vertical > .labels,
+.ui.large.labeled.range.vertical > .labels .label:after {
+  width: 2em;
+}
+
+/* Big */
+.ui.range.big .inner .thumb {
+  height: 2.5em;
+  width: 2.5em;
+}
+.ui.range.big:not(.vertical) .inner {
+  height: 2.5em;
+}
+.ui.range.big:not(.vertical) .inner .track,
+.ui.range.big:not(.vertical) .inner .track-fill {
+  height: 0.6em;
+  top: 0.95em;
+}
+.ui.big.labeled.range:not(.vertical) > .labels,
+.ui.big.labeled.range:not(.vertical) > .labels .label:after {
+  height: 2.5em;
+}
+
+/* Big Vertical */
+.ui.range.big.vertical .inner {
+  width: 2.5em;
+}
+.ui.range.big.vertical .inner .track,
+.ui.range.big.vertical .inner .track-fill {
+  width: 0.6em;
+  left: 0.95em;
+}
+.ui.big.labeled.range.vertical > .labels,
+.ui.big.labeled.range.vertical > .labels .label:after {
+  width: 2.5em;
+}
+
+
+/*******************************
+        Range Overrides
+*******************************/
+
