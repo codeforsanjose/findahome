@@ -4,6 +4,7 @@
     "ember": "~2.10.0",
     "ember-cli-shims": "0.1.3",
     "semantic-ui": "^2.2.9",
-    "gmaps-for-apps": "^0.5.14"
+    "gmaps-for-apps": "^0.5.14",
+    "seiyria-bootstrap-slider": "~6.0.6"
   }
 }
