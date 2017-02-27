@@ -7,7 +7,7 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('listings');
+  this.route('index.hbs');
 });
 
 export default Router;
