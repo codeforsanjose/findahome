@@ -1,7 +1,7 @@
 require './lib/social_crawler'
 require 'sidekiq'
 
-class ListingJob # rubocop:disable Style/Documentation
+class ListingJob
   # The listing job takes in a url and uses that to fetch
   # metadata for a listing and then store that metadata into
   # the database.
