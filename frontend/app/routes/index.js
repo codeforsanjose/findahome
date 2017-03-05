@@ -1,26 +1,30 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  setupController: function(controller) {
+  model() {
+    return this.get('store').findAll('listing');
+  },
+
+  setupController: function(controller, model) {
+    let markers = model.map(function(marker) {
+      return {
+        id: marker.get('listing-id'),
+        lat: marker.get('latitude'),
+        lng: marker.get('longitude'),
+        infoWindow: {
+          content: `<a href=${marker.get('socialUrl')}>Listing URL<a>`,
+          visible: false
+        }
+      };
+    });
+
+    console.log(markers);
+
     controller.setProperties({
       lat: 37.338208,
       lng: -121.886329,
       zoom: 12,
-      markers: Ember.A([
-        {
-          id: 'unique',
-          lat: 37.338208,
-          lng: -121.886329,
-          infoWindow: {
-            content: '<p>Hi there!</p>',
-            visible: false
-          }
-        }
-      ])
+      markers: Ember.A(markers)
     });
-  },
-
-  model() {
-    return this.get('store').findAll('listing');
   }
 });
