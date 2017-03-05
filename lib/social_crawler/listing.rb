@@ -113,6 +113,10 @@ class SocialCrawler
       complete_data = {}
 
       @table_cells.each_with_index do |cell, index|
+        #
+        # Go inside of each cell and check for a match against
+        # each of its children.
+        #
         cell.children.each do |child|
           child = child.to_s
 
@@ -141,6 +145,10 @@ class SocialCrawler
           #
           metadata_key = keyify(child)
 
+          #
+          # Merge the { key: value } return value into the
+          # the larger complete_data hash
+          #
           complete_data.merge!(
             metadata_key => cleansed_cell_content
           )
@@ -155,6 +163,9 @@ class SocialCrawler
     # The two brackets and an href linked question mark
     # disrupt the previous parse methods logic so this
     # function handles those discrepancies.
+    #
+    # This should eventually be refactored into the parse_one_to_one
+    # function.
     #
     # @param
     # @return [Hash] A collection of housing metadata.
