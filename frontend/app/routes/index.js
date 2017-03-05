@@ -18,8 +18,6 @@ export default Ember.Route.extend({
       };
     });
 
-    console.log(markers);
-
     controller.setProperties({
       lat: 37.338208,
       lng: -121.886329,
