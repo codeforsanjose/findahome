@@ -77,6 +77,8 @@ class ListingSerializer < ActiveModel::Serializer
              :shopping_venues,
              :light_rail_station,
              :social_url,
+             :latitude,
+             :longitude,
              :created_at,
              :updated_at
 end
