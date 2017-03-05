@@ -4,7 +4,7 @@ RSpec.describe SocialCrawler::Listing do # rubocop:disable Metric/BlockLength
   before(:all) do
     VCR.use_cassette('listing_page') do
       @listing = SocialCrawler::Listing.new(
-        listing_url: 'http://www.socialserve.com/dbh/ViewUnit/844787?hm=A32L2wEI'
+        listing_url: 'http://www.socialserve.com/dbh/ViewUnit/852428'
       )
       @listing.fetch_listing_page
     end
@@ -12,12 +12,6 @@ RSpec.describe SocialCrawler::Listing do # rubocop:disable Metric/BlockLength
 
   it 'should parse one to one matches within the tables on a listing page' do
     complete_data = @listing.parse_one_to_one
-
-    expect(complete_data).to be_a(Hash)
-  end
-
-  it 'should parse row data that has a question mark in one of its cells' do
-    complete_data = @listing.parse_question_marks
 
     expect(complete_data).to be_a(Hash)
   end
@@ -38,6 +32,8 @@ RSpec.describe SocialCrawler::Listing do # rubocop:disable Metric/BlockLength
     VCR.use_cassette('listing_page') do
       metadata = @listing.fetch_listing_metadata
       expect(metadata).to be_a(Hash)
+      expect(metadata.key?(:pets)).to be(true)
+      expect(metadata.key?(:property_type)).to be(true)
     end
   end
 end

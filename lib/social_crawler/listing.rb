@@ -59,6 +59,7 @@ class SocialCrawler
         { social_url: @listing_url }
       ]
 
+      data_hashes.each { |hash| data_hashes.delete(hash) if hash.nil? }
       data_hashes.inject(&:merge)
     end
 
@@ -112,26 +113,38 @@ class SocialCrawler
       complete_data = {}
 
       @table_cells.each_with_index do |cell, index|
-        cell_first_content = cell.children[0].to_s.strip.chop
-        cell_next_content = @table_cells[index + 1]
+        cell.children.each do |child|
+          child = child.to_s
 
-        match_datums = one_to_one_match_datums
-        next_cell_match_content = determine_child_placements(
-          cell_first_content,
-          cell_next_content,
-          match_datums
-        )
+          next if child.nil? || child.empty?
 
-        next if next_cell_match_content.nil?
+          child = cleanse(child)
 
-        cleansed_cell_content = cleanse(
-          next_cell_match_content.children[0].to_s
-        )
+          if one_to_one_match_datums.include?(child)
+            next_cell_content = @table_cells[index + 1]
+          end
 
-        metadata_key = keyify(cell_first_content)
-        complete_data.merge!(
-          metadata_key => cleansed_cell_content
-        )
+          next_cell_match_content = determine_child_placements(
+            child,
+            next_cell_content,
+            one_to_one_match_datums
+          )
+
+          next if next_cell_match_content.nil?
+
+          cleansed_cell_content = cleanse(
+            next_cell_match_content.children[0].to_s
+          )
+
+          #
+          # Turn the first cell's content into a hash key.
+          #
+          metadata_key = keyify(child)
+
+          complete_data.merge!(
+            metadata_key => cleansed_cell_content
+          )
+        end
       end
 
       complete_data
@@ -155,6 +168,7 @@ class SocialCrawler
         match_datums.each do |datum|
           cell_content = cell.children[2].to_s
           cleansed_cell_content = cleanse(cell_content.to_s)
+
           unless cleansed_cell_content.is_a?(TrueClass) || cleansed_cell_content.is_a?(FalseClass)
             cleansed_cell_content[0] = ''
           end
@@ -261,6 +275,9 @@ class SocialCrawler
     #
     #
     def determine_child_placements(cell_first_content, cell_next_content, match_datums)
+      #
+      # Check to see if an of our match datums is within the first cell.
+      #
       if match_datums.include?(cell_first_content)
         table_cell_match_content = cell_next_content.children[1]
 
@@ -289,17 +306,22 @@ class SocialCrawler
     def parse_address
       address_div = @page.search('div.h2')[0]
 
-      property_type = parse_one_to_one[:property_type]
-      if property_type.match(/house/im) || property_type.match(/duplex/im)
-        {
-          address: cleanse(address_div.children[0].to_s),
-          apartment_name: 'N/A'
-        }
-      else
-        {
-          address: cleanse(address_div.children[2].to_s),
-          apartment_name: cleanse(address_div.children[0].to_s)
-        }
+      begin
+        property_type = parse_one_to_one[:property_type]
+        if property_type.match(/house/im) || property_type.match(/duplex/im)
+          {
+            address: cleanse(address_div.children[0].to_s),
+            apartment_name: 'N/A'
+          }
+        else
+          {
+            address: cleanse(address_div.children[2].to_s),
+            apartment_name: cleanse(address_div.children[0].to_s)
+          }
+        end
+      rescue StandardError => error
+        puts 'Trouble parsing address.'
+        puts error
       end
     end
 

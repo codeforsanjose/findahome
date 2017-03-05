@@ -54,7 +54,7 @@ class SocialCrawler
       house_links = []
 
       @search_results_page.links.each do |link|
-        house_links << link.uri.to_s if link.uri.to_s =~ %r{\/ViewUnit\/}
+        house_links << link.uri.to_s[/[^?]+/] if link.uri.to_s =~ %r{\/ViewUnit\/}
       end
 
       house_links.uniq!.map { |uri| "#{@base_url}#{uri}" }

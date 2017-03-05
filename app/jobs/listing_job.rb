@@ -24,6 +24,7 @@ class ListingJob
 
     begin
       complete_data = @listing_agent.fetch_listing_metadata
+      logger.debug "fetched data is #{complete_data}"
     rescue Mechanize::ResponseCodeError => error
       logger.debug "error fetching page: #{error}"
     end
