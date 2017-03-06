@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170228220544) do
+ActiveRecord::Schema.define(version: 20170306051745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20170228220544) do
     t.boolean  "accepts_section_8"
     t.boolean  "tax_credit_property"
     t.boolean  "subsidized_rent_ok"
+    t.integer  "rent_amount"
     t.boolean  "seniors_only"
     t.boolean  "pets"
     t.boolean  "smoking"
