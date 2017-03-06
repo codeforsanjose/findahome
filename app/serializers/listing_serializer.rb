@@ -70,6 +70,7 @@ class ListingSerializer < ActiveModel::Serializer
              :smoking,
              :security_deposit,
              :application_fee,
+             :rent_amount,
              :date_available,
              :flooring_materials,
              :other_appliances_included,
