@@ -93,6 +93,11 @@ ActiveRecord::Schema.define(version: 20170206003719) do
     t.string   "light_rail_station"
     t.string   "shopping_venues"
     t.string   "social_url"
+    t.integer   "rent_amount"
+    t.string   "property_contact_name"
+    t.string   "property_contact_phone_number"
+    t.string   "property_contact_email"
+    t.string   "property_contact_website"
     t.string   "additional_property_options"
     t.integer  "listing_id"
     t.index ["listing_id"], name: "index_listings_on_listing_id", unique: true, using: :btree
