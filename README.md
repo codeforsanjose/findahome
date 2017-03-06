@@ -35,6 +35,10 @@ Dependencies:
 | Postgres   | v9      |
 | Redis      | v3      |
 
+How you install those dependencies depends on your operating system. For Ruby and Node, I highly recommend [rvm](https://rvm.io/) and [nvm](https://github.com/creationix/nvm), respectively. They're both shell based installers for their languages and will allow you to easily switch between installed language versions.
+
+For Postgres and Redis, `brew install` *should* provide you up to date versions for both databases. If you're using Linux, then use your distribution's package manager.
+
 **Steps to start the API and frontend:**
 
 1. Git clone the sucka'
@@ -42,6 +46,7 @@ Dependencies:
 4. `rake ember:install`
 5. `bundle exec rails db:setup`
 6. `bundle exec rails s`
+7. Navigate to `localhost:3000` to see the index.
 
 This will start the app but there won't be any data in it.
 
@@ -53,24 +58,8 @@ The listing collection mechanism is entirely contained within Sidekiq driven job
 
 * Run `bundle exec sidekiq` in another tab while the Rails server is running.
 * Run `bundle exec rake search_job:enqueue` to start the listing collection process.
-* If you navigate to `localhost:3000` in your browser then you should see a simple listing of those, uh, listings.
 
-If you want to have a fancy UI to track jobs, create a `sidekiq.ru` file somewhere outside of the project directory - the `/tmp` directory is a good place.
-
-Then fill that file with this:
-
-```
-require 'sidekiq'
-
-Sidekiq.configure_client do |config|
-  config.redis = { :size => 1 }
-end
-
-require 'sidekiq/web'
-run Sidekiq::Web
-```
-
-And run `rackup sidekiq.ru` in yet another tab.
+Go to `localhost:3000/sidekiq` to see the listing jobs being processed.
 
 **CAUTION:** Following the above steps may trigger rate limiting by Social Serve. You'll start to see jobs fail in the Sidekiq UI because the fetch listing requests will start to forward to a page that asks a user to enter a captcha in order to prove that they're not a robot. If you enter the captcha then you'll be good to go for another N requests. If you're testing the listing collection code then I encourage you to kill Sidekiq (CTRL+C in the terminal window running it) after five or ten collections.
 

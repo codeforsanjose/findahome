@@ -12,12 +12,13 @@ gem 'ember-cli-rails'
 gem 'ember-rails'
 gem 'mechanize'
 gem 'pg', '~> 0.18'
+gem 'geocoder', '1.4.3'
 gem 'puma', '~> 3.0'
 gem 'sprockets', '3.6.3'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
+gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
