@@ -3,6 +3,8 @@ services:
   db:
     image: postgres
   web:
+    environment:
+      - SECRET_KEY_BASE=secret
     build: .
     ports:
       - "8080:80"

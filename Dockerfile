@@ -11,7 +11,18 @@
 #
 FROM phusion/passenger-full
 
+# Let's install and upate the command line tools that
+# are needed for installing the dependencies.
+#
+#
+RUN npm install -g npm
+RUN npm install -g ember-cli
+RUN npm install -g bower
+RUN gem install bundler
+
 # Let's give findahome a home within the container.
+#
+# Copy statements invalidate Docker's cache.
 #
 #
 COPY . /home/app/findahome
@@ -43,25 +54,25 @@ ADD ./deploy_conf/postgres_env.conf /etc/nginx/main.d/postgres_env.conf
 #
 RUN bash -lc 'rvm --default use ruby-2.3.3'
 
-# Install dependencies for findahome
+# Installing the dependencies for findahome
 #
 #
 WORKDIR /home/app/findahome
-RUN npm install -g npm
-RUN npm install -g ember-cli
-RUN npm install -g bower
-RUN gem install bundler
 RUN bundle install
 RUN echo '{ "allow_root": true }' > /root/.bowerrc
 RUN bundle exec rake ember:install
+
+# Precompile our assets
+#
+#
 RUN bundle exec rails assets:precompile
 
 # Let's get our packages within the container up to date and then
 # clean up after ourselves.
 #
 #
-# RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
-# RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Since everything is ran under the app user then
 # let's make sure that 'app' has permissions to access
