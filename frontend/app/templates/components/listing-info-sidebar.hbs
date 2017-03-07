@@ -1,6 +1,9 @@
-<div class="ui container">
+
+
+  <div class="ui container">
     <div class="ui segment">
         <b> Apartments for Rent </b>
+
         <table class="ui definition table">
             <tr>
                 <td class="one wide column">
@@ -17,7 +20,19 @@
                     }}
                 </td>
             </tr>
+
+        <article class="listing">
+          {{#each model as |listing|}}
+            <h3> Name:{{listing.apartmentName}}</h3>
+            <p> Address: {{listing.address}}</p>
+            <p> Rent Amount: ${{listing.rentAmount}}</p>
+            <p> Bedrooms: {{listing.bedrooms}} </p>
+            <p> Bathrooms: {{listing.bathrooms}} </p>
+          {{/each}}
+        </article>
         </table>
+
+       <!--
         <h4 class="ui horizontal divider header">
             <i class="tag icon"></i>
             Listing information
@@ -41,5 +56,7 @@
                 </div>
             </div>
         </div>
+      -->
     </div>
 </div>
+
