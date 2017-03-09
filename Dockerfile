@@ -20,6 +20,8 @@ RUN npm install -g ember-cli
 RUN npm install -g bower
 RUN gem install bundler
 
+ENV RAILS_ENV=production
+
 # Let's give findahome a home within the container.
 #
 # Copy statements invalidate Docker's cache.
@@ -32,7 +34,6 @@ COPY . /home/app/findahome
 # remove them so those services start up.
 #
 #
-RUN rm /etc/service/nginx/down
 RUN rm /etc/service/redis/down
 
 # Let's remove the default site served
@@ -41,6 +42,8 @@ RUN rm /etc/service/redis/down
 #
 RUN rm /etc/nginx/sites-enabled/default
 COPY ./deploy_conf/nginx_site.conf /etc/nginx/sites-enabled/findahome.conf
+COPY ./deploy_conf/findahome.sh /etc/init.d/findahome.sh
+RUN chmod +x /etc/init.d/findahome.sh
 
 # Nginx clears environment variables by default
 # so let's preserve those variables by laying
