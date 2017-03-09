@@ -20,17 +20,16 @@
                     }}
                 </td>
             </tr>
-
-        <article class="listing">
-          {{#each model as |listing|}}
-            <h3> Name:{{listing.apartmentName}}</h3>
-            <p> Address: {{listing.address}}</p>
-            <p> Rent Amount: ${{listing.rentAmount}}</p>
-            <p> Bedrooms: {{listing.bedrooms}} </p>
-            <p> Bathrooms: {{listing.bathrooms}} </p>
-          {{/each}}
-        </article>
         </table>
+
+        <article class="listing-card">
+            {{#each model as |listing|}}
+                <h3> Name: {{listing.apartmentName}}</h3>
+                <p> Address: {{listing.address}}</p>
+                <p> Bedrooms: {{listing.bedrooms}} </p>
+                <p> Bathrooms: {{listing.bathrooms}} </p>
+            {{/each}}
+        </article>
 
        <!--
         <h4 class="ui horizontal divider header">

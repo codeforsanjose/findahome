@@ -22,7 +22,8 @@ export default Ember.Route.extend({
       lat: 37.338208,
       lng: -121.886329,
       zoom: 12,
-      markers: Ember.A(markers)
+      markers: markers,
+      model: model
     });
   }
 });
