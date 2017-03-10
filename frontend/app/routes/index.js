@@ -27,7 +27,7 @@ export default Ember.Route.extend({
       model: model
       // setupController overrides model property that router defines
       // so pass model back into controller object via its properties
-      // then pass the model into the listing info sidebar component  
+      // then pass the model into the listing info sidebar component
     });
   }
 });
