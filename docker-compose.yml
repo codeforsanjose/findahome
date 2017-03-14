@@ -5,7 +5,7 @@ services:
   redis:
     image: redis
   app:
-    image: howdoicomputer/findahome:v7
+    build: .
     ports:
       - "3000:3000"
     links:
@@ -17,7 +17,7 @@ services:
       - postgres
       - redis
   sidekiq:
-    image: howdoicomputer/findahome:v7
+    image: howdoicomputer/findahome
     command: deploy/start_sidekiq.sh
     links:
       - redis

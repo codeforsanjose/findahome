@@ -15,7 +15,7 @@ services:
   app:
     container_name: app
     size: m1
-    image: howdoicomputer/findahome:v7
+    image: howdoicomputer/findahome:v1
     fip: 199.245.57.129
     ports:
       - "80:3000"
@@ -30,7 +30,7 @@ services:
   sidekiq:
     container_name: sidekiq
     size: s4
-    image: howdoicomputer/findahome:v7
+    image: howdoicomputer/findahome:v1
     command: bash -c "/home/findahome/findahome/deploy/start_sidekiq.sh"
     links:
       - redis
@@ -41,6 +41,8 @@ services:
       - redis
       - postgres
 
+# This is currently commented out due to me hitting my lets encrypt API limit. Will pull in next week.
+#
 #  proxy:
 #    image: jgillich/hyper-proxy
 #    container_name: proxy
