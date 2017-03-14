@@ -1,8 +1,9 @@
+# frozen_string_literal: true
 require './lib/social_crawler'
 require 'sidekiq'
 require 'json'
 
-class SearchJob # rubocop:disable Style/Documentation
+class SearchJob
   # The search job is fairly simple.
   #
   # It will instantiate a search Mechanize agent and then

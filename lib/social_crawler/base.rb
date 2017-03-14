@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'mechanize'
 
 # Parent class for crawling the Social Serve website.

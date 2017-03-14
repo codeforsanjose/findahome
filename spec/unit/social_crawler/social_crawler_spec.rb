@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require_relative '../../../lib/social_crawler'
 
 RSpec.describe SocialCrawler do

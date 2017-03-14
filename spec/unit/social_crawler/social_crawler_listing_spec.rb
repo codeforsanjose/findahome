@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 require_relative '../../../lib/social_crawler'
 
-RSpec.describe SocialCrawler::Listing do # rubocop:disable Metric/BlockLength
+RSpec.describe SocialCrawler::Listing do # rubocop:disable Metrics/BlockLength
   before(:all) do
     VCR.use_cassette('listing_page') do
       @listing = SocialCrawler::Listing.new(
@@ -16,7 +17,7 @@ RSpec.describe SocialCrawler::Listing do # rubocop:disable Metric/BlockLength
     expect(complete_data).to be_a(Hash)
   end
 
-  it 'should parse all data elements that are in a \'row => subsequent row\' format' do # rubocop:disable Metric/LineLength
+  it 'should parse all data elements that are in a \'row => subsequent row\' format' do # rubocop:disable Metrics/LineLength
     complete_data = @listing.parse_row_links
 
     expect(complete_data).to be_a(Hash)

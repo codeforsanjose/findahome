@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class String
   # It's easier to store and handle Booleans than different
   # strings that represent true or false.

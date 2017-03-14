@@ -5,7 +5,9 @@ AllCops:
     - config.ru
     - lib/**/*.rake
   Exclude:
-    - db/schema.rb
+    - db/**/*
+    - scratch/*
+    - config/**/*
 
 Metrics/LineLength:
   Max: 100

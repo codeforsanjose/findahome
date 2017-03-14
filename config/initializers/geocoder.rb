@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Geocoder.configure(
   lookup:    :google,
   use_https: true,
