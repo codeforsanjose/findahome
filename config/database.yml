@@ -22,12 +22,12 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: 'postgres'
   password: 'postgres'
-  host: db
+  host: localhost
 
 development:
   <<: *default
   database: findahome_development
-  host: db
+  host: localhost
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -62,7 +62,7 @@ development:
 test:
   <<: *default
   database: findahome_test
-  host: db
+  host: localhost
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -88,4 +88,4 @@ production:
   database: findahome_production
   username: postgres
   password:
-  host: db
+  host: postgres

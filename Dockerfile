@@ -9,87 +9,49 @@
 # * Redis, Nginx, Ruby, and Node are preinstalled
 #
 #
-FROM phusion/passenger-full
+FROM node:6.10.0
+
+ENV CONFIGURE_OPTS --disable-install-doc
 
 # Let's install and upate the command line tools that
 # are needed for installing the dependencies.
 #
 #
-RUN npm install -g npm
 RUN npm install -g ember-cli
 RUN npm install -g bower
-RUN gem install bundler
-
-ENV RAILS_ENV=production
-
-# Let's give findahome a home within the container.
-#
-# Copy statements invalidate Docker's cache.
-#
-#
-COPY . /home/app/findahome
-
-# Phusion has included some 'lockfiles' that
-# prevent Nginx and Redis from starting. Let's
-# remove them so those services start up.
-#
-#
-RUN rm /etc/service/redis/down
-
-# Let's remove the default site served
-# by Nginx and serve up our own.
-#
-#
-RUN rm /etc/nginx/sites-enabled/default
-COPY ./deploy_conf/nginx_site.conf /etc/nginx/sites-enabled/findahome.conf
-COPY ./deploy_conf/findahome.sh /etc/init.d/findahome.sh
-RUN chmod +x /etc/init.d/findahome.sh
-
-# Nginx clears environment variables by default
-# so let's preserve those variables by laying
-# down a configuration file.
-#
-#
-ADD ./deploy_conf/postgres_env.conf /etc/nginx/main.d/postgres_env.conf
-
-# Use Ruby version 2.3.3
-#
-#
-RUN bash -lc 'rvm --default use ruby-2.3.3'
-
-# Installing the dependencies for findahome
-#
-#
-WORKDIR /home/app/findahome
-RUN bundle install
 RUN echo '{ "allow_root": true }' > /root/.bowerrc
-RUN bundle exec rake ember:install
 
-# Precompile our assets
-#
-#
-RUN bundle exec rails assets:precompile
+RUN useradd findahome
+RUN mkdir /home/findahome
+RUN chown -R findahome:findahome /home/findahome
 
-# Let's get our packages within the container up to date and then
-# clean up after ourselves.
-#
-#
-RUN apt-get update && apt-get upgrade -y -o Dpkg::Options::="--force-confold"
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+USER findahome
+RUN git clone https://github.com/rbenv/rbenv.git /home/findahome/.rbenv
+RUN echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> /home/findahome/.bash_profile
+RUN echo 'eval "$(rbenv init -)"' >> /home/findahome/.bash_profile
+RUN git clone https://github.com/rbenv/ruby-build.git /home/findahome/.rbenv/plugins/ruby-build
 
-# Since everything is ran under the app user then
-# let's make sure that 'app' has permissions to access
-# the copied over findahome database
-#
-#
-RUN chown -R app:app /home/app/findahome
-RUN chmod o+x /home/app
+RUN /bin/bash -l -c "rbenv install 2.3.3"
+RUN /bin/bash -l -c "rbenv rehash"
+RUN /bin/bash -l -c "rbenv global 2.3.3"
+RUN /bin/bash -l -c "gem install bundler --no-ri --no-rdoc"
+
+COPY . /home/findahome/findahome
+USER root
+RUN chown -R findahome:findahome /home/findahome/findahome
+USER findahome
+
+WORKDIR /home/findahome/findahome
+RUN /bin/bash -l -c "bundle install"
+RUN /bin/bash -l -c "bundle exec rake ember:install"
+RUN /bin/bash -l -c "bundle exec rails assets:precompile"
 
 # Remember, the port format for docker is <host_port>:<container_port>
 #
 # So, if you're running this from the command line, you need to execute
-# something like docker run -p 8080:80 to view the site.
+# something like docker run -p 3000:80 to view the site.
 #
 #
-CMD ["/sbin/my_init"]
-EXPOSE 80
+ENV RAILS_ENV=production
+CMD /bin/bash -l -c "rm -f tmp/pids/server.pid && rails server --bind 0.0.0.0"
+EXPOSE 3000
