@@ -44,7 +44,6 @@ USER findahome
 WORKDIR /home/findahome/findahome
 RUN /bin/bash -l -c "bundle install"
 RUN /bin/bash -l -c "bundle exec rake ember:install"
-RUN /bin/bash -l -c "bundle exec rails assets:precompile"
 
 # Remember, the port format for docker is <host_port>:<container_port>
 #
@@ -53,5 +52,11 @@ RUN /bin/bash -l -c "bundle exec rails assets:precompile"
 #
 #
 ENV RAILS_ENV=production
-CMD /bin/bash -l -c "rm -f tmp/pids/server.pid && rails server --bind 0.0.0.0"
+ENV REDIS_URL=redis://redis:6379/0
+RUN chmod +x deploy/start_sidekiq.sh && chmod +x deploy/start_rails.sh
+CMD deploy/start_rails.sh
 EXPOSE 3000
+
+LABEL description="A container for the Find a Home project."
+LABEL maintainer="Tyler Hamption <howdoicomputer@fastmail.com>"
+LABEL version="v5"
