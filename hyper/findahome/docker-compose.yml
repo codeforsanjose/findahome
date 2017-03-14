@@ -34,10 +34,12 @@ services:
     command: bash -c "/home/findahome/findahome/deploy/start_sidekiq.sh"
     links:
       - redis
+      - postgres
     env_file:
       - ../../.env
     depends_on:
       - redis
+      - postgres
 
 #  proxy:
 #    image: jgillich/hyper-proxy
