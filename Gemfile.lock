@@ -135,6 +135,7 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
+    multi_json (1.12.1)
     net-http-digest_auth (1.4.1)
     net-http-persistent (2.9.4)
     nio4r (2.0.0)
@@ -185,6 +186,8 @@ GEM
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
     redis (3.3.3)
+    rollbar (2.14.0)
+      multi_json
     rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -273,6 +276,7 @@ DEPENDENCIES
   rails (~> 5.0.1)
   rails-controller-testing
   redis (~> 3.0)
+  rollbar (= 2.14.0)
   rspec-rails
   rubocop
   sidekiq

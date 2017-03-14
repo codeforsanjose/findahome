@@ -16,6 +16,7 @@ gem 'geocoder', '1.4.3'
 gem 'puma', '~> 3.0'
 gem 'sprockets', '3.6.3'
 gem 'tzinfo-data'
+gem 'rollbar', '2.14.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
