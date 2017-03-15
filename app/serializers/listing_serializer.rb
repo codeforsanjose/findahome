@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class ListingSerializer < ActiveModel::Serializer
   attributes :id,
              :listing_id,

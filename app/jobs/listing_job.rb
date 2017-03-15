@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require './lib/social_crawler'
 require 'sidekiq'
 

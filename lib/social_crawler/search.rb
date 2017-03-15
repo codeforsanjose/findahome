@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class SocialCrawler
   # A class for crawling the Social Serve website.
   #
@@ -6,7 +7,6 @@ class SocialCrawler
   #
   # @attr_reader [Mechanize] search_results_page The current search page.
   #
-  # rubocop:disable Metric/LineLength
   #
   # @attr_reader [String] search_url The URL for the Santa Clara County search form.
   #
