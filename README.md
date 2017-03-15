@@ -2,6 +2,8 @@
 [![Coverage Status](https://coveralls.io/repos/github/codeforsanjose/findahome/badge.svg?branch=development)](https://coveralls.io/github/codeforsanjose/findahome?branch=development)
 [![Dependency Status](https://gemnasium.com/badges/github.com/codeforsanjose/findahome.svg)](https://gemnasium.com/github.com/codeforsanjose/findahome)
 
+![screenshot](http://i.imgur.com/AaVd6VY.png)
+
 # Find a Home
 
 The Find a Home project is an effort by a group within Code for San Jose to provide mobile and web applications that make finding affordable housing in the Bay Area not only easy but also moderately fun.
@@ -13,6 +15,10 @@ The California Bay Area is currently going through a housing epidemic; rapidly i
 While this is good and all, finding that selection of housing is somewhat difficult. While the rest of the housing market is benefited by fancy webapps like Zillow, Padmapper, etc., the rent controlled units are shuffled into a Government contracted website called Social Serve that is not really well known and hard to use.
 
 Since fancy webapps like Zillow and Padmapper lack rent controlled listings and Social Serve is not on par with with said fancy webapps, Find a Home's goal is to provide a web and mobile application that serves the community - all while being really, really good looking.
+
+# Sneak peek
+
+There is a staging server that lives [here](http://199.245.57.129/). Due to the rapid pace of development, it may be broken at any time so keep that in mind - sorry.
 
 ## Tech
 
