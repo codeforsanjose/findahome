@@ -15,6 +15,7 @@ gem 'pg', '~> 0.18'
 gem 'geocoder', '1.4.3'
 gem 'puma', '~> 3.0'
 gem 'sprockets', '3.6.3'
+gem 'tzinfo-data'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -50,6 +51,3 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

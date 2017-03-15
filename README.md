@@ -48,7 +48,15 @@ For Postgres and Redis, `brew install` *should* provide you up to date versions 
 6. `bundle exec rails s`
 7. Navigate to `localhost:3000` to see the index.
 
-This will start the app but there won't be any data in it.
+This will start the app but there won't be any data in it. To get a simple data set run: `rails db:seed`
+
+## Docker
+
+There is a docker-compose.yml file at the root of this project. If you have docker and docker-compose installed and properly setup then getting a working app is relatively easy with a `cp .env.sample .env && docker-compose up`.
+
+## Env
+
+There is `.env.sample` file that contains empty environment variable declarations. This file is pulled into docker containers via docker-compose in an effort to manage secrets without having to check them into a repository.
 
 **Steps to start the listing collection process:**
 
