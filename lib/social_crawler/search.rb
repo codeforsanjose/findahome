@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class SocialCrawler
   # A class for crawling the Social Serve website.
   #
@@ -6,11 +7,10 @@ class SocialCrawler
   #
   # @attr_reader [Mechanize] search_results_page The current search page.
   #
-  # rubocop:disable Metric/LineLength
   #
   # @attr_reader [String] search_url The URL for the Santa Clara County search form.
   #
-  # rubocop:enable Metric/LineLength
+  # rubocop:enable Metrics/LineLength
   #
   class Search < SocialCrawler
     attr_reader :agent
@@ -54,7 +54,7 @@ class SocialCrawler
       house_links = []
 
       @search_results_page.links.each do |link|
-        house_links << link.uri.to_s if link.uri.to_s =~ %r{\/ViewUnit\/}
+        house_links << link.uri.to_s[/[^?]+/] if link.uri.to_s =~ %r{\/ViewUnit\/}
       end
 
       house_links.uniq!.map { |uri| "#{@base_url}#{uri}" }

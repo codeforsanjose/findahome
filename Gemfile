@@ -12,12 +12,16 @@ gem 'ember-cli-rails'
 gem 'ember-rails'
 gem 'mechanize'
 gem 'pg', '~> 0.18'
+gem 'geocoder', '1.4.3'
 gem 'puma', '~> 3.0'
 gem 'sprockets', '3.6.3'
+gem 'tzinfo-data'
+gem 'rollbar', '2.14.0'
+gem 'rspec_junit_formatter', '0.2.3'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
+gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -41,6 +45,7 @@ group :development, :test do
   gem 'vcr'
   gem 'webmock'
   gem 'rubocop', require: false
+  gem 'coveralls', require: false
 end
 
 group :development do
@@ -49,6 +54,3 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

@@ -1,7 +1,8 @@
+# frozen_string_literal: true
 require './lib/social_crawler'
 require 'sidekiq'
 
-class ListingJob # rubocop:disable Style/Documentation
+class ListingJob
   # The listing job takes in a url and uses that to fetch
   # metadata for a listing and then store that metadata into
   # the database.
@@ -24,6 +25,7 @@ class ListingJob # rubocop:disable Style/Documentation
 
     begin
       complete_data = @listing_agent.fetch_listing_metadata
+      logger.debug "fetched data is #{complete_data}"
     rescue Mechanize::ResponseCodeError => error
       logger.debug "error fetching page: #{error}"
     end
