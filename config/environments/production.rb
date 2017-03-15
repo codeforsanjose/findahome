@@ -65,7 +65,7 @@ Rails.application.configure do
 
   # The configured IP address is for logs5.papertrailapp.com
   #
-  config.logger = RemoteSyslogLogger.new('169.46.82.178', 26726)
+  config.logger = RemoteSyslogLogger.new('169.46.82.178', 267_26)
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
