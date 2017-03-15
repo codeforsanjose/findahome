@@ -1,4 +1,4 @@
-[![Build Status](https://circleci.com/gh/codeforanjose/findahome.svg?style=shield&circle-token=5a95972fe528dc71c30b62f64f85ba895f260ef8)](https://circleci.com/gh/codeforanjose/findahome.svg?style=shield&circle-token=5a95972fe528dc71c30b62f64f85ba895f260ef8)
+[![Build Status](https://circleci.com/gh/codeforsanjose/findahome.svg?style=shield&circle-token=5a95972fe528dc71c30b62f64f85ba895f260ef8)](https://circleci.com/gh/codeforsanjose/findahome.svg?style=shield&circle-token=5a95972fe528dc71c30b62f64f85ba895f260ef8)
 [![Coverage Status](https://coveralls.io/repos/github/codeforsanjose/findahome/badge.svg?branch=development)](https://coveralls.io/github/codeforsanjose/findahome?branch=development)
 
 # Find a Home
