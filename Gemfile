@@ -45,6 +45,7 @@ group :development, :test do
   gem 'vcr'
   gem 'webmock'
   gem 'rubocop', require: false
+  gem 'coveralls', require: false
 end
 
 group :development do
