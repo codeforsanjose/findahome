@@ -15,7 +15,7 @@ class ListingJob
   #
   #
   include Sidekiq::Worker
-  sidekiq_options retry: 2
+  sidekiq_options retry: 2, backtrace: true
   sidekiq_retry_in { yield 2000 }
 
   def perform(listing_url, proxy)
