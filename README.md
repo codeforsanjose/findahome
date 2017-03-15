@@ -16,6 +16,10 @@ While this is good and all, finding that selection of housing is somewhat diffic
 
 Since fancy webapps like Zillow and Padmapper lack rent controlled listings and Social Serve is not on par with with said fancy webapps, Find a Home's goal is to provide a web and mobile application that serves the community - all while being really, really good looking.
 
+# Sneak peek
+
+There is a staging server that lives [here](http://199.245.57.129/). Due to the rapid pace of development, it may be broken at any time so keep that in mind - sorry.
+
 ## Tech
 
 Both the mobile and web applications will be powered by a Rails based API that serves up rental listings within Santa Clara county, with the initial listings being crawled from the Social Serve website. The API conforms to the JSON:API standard and will use Swagger to both document the API and provide SDK generation for various languages.
