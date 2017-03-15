@@ -17,6 +17,7 @@ gem 'puma', '~> 3.0'
 gem 'sprockets', '3.6.3'
 gem 'tzinfo-data'
 gem 'rollbar', '2.14.0'
+gem 'rspec_junit_formatter', '0.2.3'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -44,6 +45,7 @@ group :development, :test do
   gem 'vcr'
   gem 'webmock'
   gem 'rubocop', require: false
+  gem 'coveralls', require: false
 end
 
 group :development do

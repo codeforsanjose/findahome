@@ -10,7 +10,7 @@ class SocialCrawler
   #
   # @attr_reader [String] search_url The URL for the Santa Clara County search form.
   #
-  # rubocop:enable Metric/LineLength
+  # rubocop:enable Metrics/LineLength
   #
   class Search < SocialCrawler
     attr_reader :agent

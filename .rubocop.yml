@@ -8,6 +8,7 @@ AllCops:
     - db/**/*
     - scratch/*
     - config/**/*
+    - vendor/**/*
 
 Metrics/LineLength:
   Max: 100
