@@ -1,4 +1,5 @@
-![Build Status](https://circleci.com/gh/codefordanjose/findahome.svg?style=shield&circle-token=:circle-token)
+[![Build Status](https://circleci.com/gh/codefordanjose/findahome.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/codefordanjose/findahome.svg?style=shield&circle-token=:circle-token)
+[![Coverage Status](https://coveralls.io/repos/github/codeforsanjose/findahome/badge.svg?branch=development)](https://coveralls.io/github/codeforsanjose/findahome?branch=development)
 
 # Find a Home
 
