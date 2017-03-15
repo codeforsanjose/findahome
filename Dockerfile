@@ -110,3 +110,4 @@ EXPOSE 3000
 
 LABEL description="A container for the Find a Home project."
 LABEL maintainer="Tyler Hamption <howdoicomputer@fastmail.com>"
+LABEL version="v2"

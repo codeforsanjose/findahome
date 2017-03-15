@@ -15,7 +15,7 @@ services:
   app:
     container_name: app
     size: m1
-    image: howdoicomputer/findahome:v1
+    image: howdoicomputer/findahome:v2
     fip: 199.245.57.129
     ports:
       - "80:3000"
@@ -30,7 +30,7 @@ services:
   sidekiq:
     container_name: sidekiq
     size: s4
-    image: howdoicomputer/findahome:v1
+    image: howdoicomputer/findahome:v2
     command: bash -c "/home/findahome/findahome/deploy/start_sidekiq.sh"
     links:
       - redis
