@@ -119,40 +119,44 @@ class SocialCrawler
         # each of its children.
         #
         cell.children.each do |child|
-          child = child.to_s
+          begin
+            child = child.to_s
 
-          next if child.nil? || child.empty?
+            next if child.nil? || child.empty?
 
-          child = cleanse(child)
+            child = cleanse(child)
 
-          if one_to_one_match_datums.include?(child)
-            next_cell_content = @table_cells[index + 1]
+            if one_to_one_match_datums.include?(child)
+              next_cell_content = @table_cells[index + 1]
+            end
+
+            next_cell_match_content = determine_child_placements(
+              child,
+              next_cell_content,
+              one_to_one_match_datums
+            )
+
+            next if next_cell_match_content.nil?
+
+            cleansed_cell_content = cleanse(
+              next_cell_match_content.children[0].to_s
+            )
+
+            # Turn the first cell's content into a hash key.
+            #
+            #
+            metadata_key = keyify(child)
+
+            # Merge the { key: value } return value into the
+            # the larger complete_data hash
+            #
+            #
+            complete_data.merge!(
+              metadata_key => cleansed_cell_content
+            )
+          rescue StandardError => e
+            puts e
           end
-
-          next_cell_match_content = determine_child_placements(
-            child,
-            next_cell_content,
-            one_to_one_match_datums
-          )
-
-          next if next_cell_match_content.nil?
-
-          cleansed_cell_content = cleanse(
-            next_cell_match_content.children[0].to_s
-          )
-
-          #
-          # Turn the first cell's content into a hash key.
-          #
-          metadata_key = keyify(child)
-
-          #
-          # Merge the { key: value } return value into the
-          # the larger complete_data hash
-          #
-          complete_data.merge!(
-            metadata_key => cleansed_cell_content
-          )
         end
       end
 
@@ -177,24 +181,28 @@ class SocialCrawler
 
       complete_data = {}
       @table_cells.each_with_index do |cell, index|
-        match_datums.each do |datum|
-          cell_content = cell.children[2].to_s
-          cleansed_cell_content = cleanse(cell_content.to_s)
+        begin
+          match_datums.each do |datum|
+            cell_content = cell.children[2].to_s
+            cleansed_cell_content = cleanse(cell_content.to_s)
 
-          unless cleansed_cell_content.is_a?(TrueClass) || cleansed_cell_content.is_a?(FalseClass)
-            cleansed_cell_content[0] = ''
+            unless cleansed_cell_content.is_a?(TrueClass) || cleansed_cell_content.is_a?(FalseClass)
+              cleansed_cell_content[0] = ''
+            end
+
+            next unless cell_content.match(datum)
+
+            next_cell_match_content = cleanse(
+              @table_cells[index + 1].children[1].children[0].to_s
+            )
+
+            metadata_key = keyify(cleansed_cell_content)
+            complete_data.merge!(
+              metadata_key => next_cell_match_content
+            )
           end
-
-          next unless cell_content.match(datum)
-
-          next_cell_match_content = cleanse(
-            @table_cells[index + 1].children[1].children[0].to_s
-          )
-
-          metadata_key = keyify(cleansed_cell_content)
-          complete_data.merge!(
-            metadata_key => next_cell_match_content
-          )
+        rescue StandardError => e
+          puts e
         end
       end
 
@@ -219,21 +227,25 @@ class SocialCrawler
 
       complete_data = {}
       @table_cells.each_with_index do |cell, index|
-        match_datums.each do |datum|
-          next unless cell.to_s.match(datum)
+        begin
+          match_datums.each do |datum|
+            next unless cell.to_s.match(datum)
 
-          next_row_match_content = table_cells[index + 1]
+            next_row_match_content = table_cells[index + 1]
 
-          cleansed_cell_key = cleanse(cell.content.to_s)
+            cleansed_cell_key = cleanse(cell.content.to_s)
 
-          cleansed_next_row_match_content = cleanse(
-            next_row_match_content.children[0].to_s
-          )
+            cleansed_next_row_match_content = cleanse(
+              next_row_match_content.children[0].to_s
+            )
 
-          metadata_key = keyify(cleansed_cell_key)
-          complete_data.merge!(
-            metadata_key => cleansed_next_row_match_content
-          )
+            metadata_key = keyify(cleansed_cell_key)
+            complete_data.merge!(
+              metadata_key => cleansed_next_row_match_content
+            )
+          end
+        rescue StandardError => e
+          puts e
         end
       end
 
