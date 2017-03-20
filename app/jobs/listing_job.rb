@@ -31,7 +31,7 @@ class ListingJob
     end
 
     if complete_data.nil?
-      msg = "No data was fetched."
+      msg = 'No data was fetched.'
       logger.debug msg
       raise msg
     end
