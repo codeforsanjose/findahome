@@ -85,5 +85,9 @@ The requests it sends out are stagged by one minute - i.e, one request per minut
 
 Sorry for the setup being so complicated! I plan on making everything easier to install and manage in the future!
 
+## Swagger
+
+Swagger is used to document the API. Visit `localhost:3000/api/v1/swagger.json` to see the API definition.
+
 Made with :heart: by Code for San Jose
 ---

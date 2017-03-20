@@ -36,6 +36,7 @@ group :development, :test do
   gem 'webmock'
   gem 'rubocop', require: false
   gem 'coveralls', require: false
+  gem 'swagger-blocks'
 end
 
 group :development do
