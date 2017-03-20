@@ -6,26 +6,30 @@ module Api
 
       swagger_path '/api/v1/listings' do
         operation :get do
-          key :description, 'Returns all pets from the system that the user has access to'
-          key :operationId, 'findPets'
+          key :description, 'Returns all rental listings'
+          key :operationId, 'findListings'
           key :produces, [
             'application/json',
             'text/html',
           ]
           key :tags, [
-            'pet'
+            'listing'
           ]
+
           parameter do
             key :name, :tags
             key :in, :query
             key :description, 'tags to filter by'
             key :required, false
             key :type, :array
+
             items do
               key :type, :string
             end
+
             key :collectionFormat, :csv
           end
+
           parameter do
             key :name, :limit
             key :in, :query
@@ -34,15 +38,17 @@ module Api
             key :type, :integer
             key :format, :int32
           end
+
           response 200 do
             key :description, 'pet response'
             schema do
               key :type, :array
               items do
-                key :'$ref', :Pet
+                key :'$ref', :Listing
               end
             end
           end
+
           response :default do
             key :description, 'unexpected error'
             schema do
