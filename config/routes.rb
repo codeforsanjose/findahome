@@ -3,7 +3,9 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   namespace :api do
-    resources :listings
+    namespace :v1 do
+      resources :listings
+    end
   end
 
   mount Sidekiq::Web => '/sidekiq'
