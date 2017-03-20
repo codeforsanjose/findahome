@@ -80,7 +80,6 @@ ActiveRecord::Schema.define(version: 20170306051745) do
     t.boolean  "accepts_section_8"
     t.boolean  "tax_credit_property"
     t.boolean  "subsidized_rent_ok"
-    t.integer  "rent_amount"
     t.boolean  "seniors_only"
     t.boolean  "pets"
     t.boolean  "smoking"
@@ -98,6 +97,7 @@ ActiveRecord::Schema.define(version: 20170306051745) do
     t.integer  "listing_id"
     t.float    "latitude"
     t.float    "longitude"
+    t.integer  "rent_amount"
     t.index ["listing_id"], name: "index_listings_on_listing_id", unique: true, using: :btree
   end
 
