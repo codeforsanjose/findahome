@@ -30,6 +30,12 @@ class ListingJob
       logger.debug "error fetching page: #{error}"
     end
 
+    if complete_data.nil?
+      msg = "No data was fetched."
+      logger.debug msg
+      raise msg
+    end
+
     Listing.find_or_create_by(listing_id: complete_data[:listing_id]) do |listing|
       listing.update_attributes(complete_data)
     end

@@ -489,6 +489,7 @@ class SocialCrawler
 
     def question_match_datums
       datums = [
+        'Rent Amount\:',
         'Criminal Check\:',
         'Pets\:',
         'Credit Check\:',
