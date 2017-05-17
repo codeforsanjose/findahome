@@ -75,6 +75,9 @@ export default DS.Model.extend({
   otherAppliancesIncluded: DS.attr('string'),
   additionalPropertyOptions: DS.attr('string'),
   socialUrl: DS.attr('string'),
+  rent_amount: DS.attr('number'),
+  latitude: DS.attr('number'),
+  longitude: DS.attr('number'),
   shoppingVenues: DS.attr('string'),
   lightRailStation: DS.attr('string')
 });

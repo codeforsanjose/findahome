@@ -54,7 +54,7 @@ class SocialCrawler
       house_links = []
 
       @search_results_page.links.each do |link|
-        house_links << link.uri.to_s if link.uri.to_s =~ %r{\/ViewUnit\/}
+        house_links << link.uri.to_s[/[^?]+/] if link.uri.to_s =~ %r{\/ViewUnit\/}
       end
 
       house_links.uniq!.map { |uri| "#{@base_url}#{uri}" }
@@ -90,7 +90,7 @@ class SocialCrawler
     # @return [Mechanize::Form] search form with max values
     #
     #
-    def mark_search_form_with_max_values(search_form) # rubocop:disable Metrics/AbcSize, Metrics/LineLength
+    def mark_search_form_with_max_values(search_form)
       search_form.radiobuttons_with(name: 's8')[0].check
       search_form.radiobuttons_with(name: 'rental_voucher_programs_5')[0].check
       search_form.fields_with(name: 'high_rent')[0].options[-1].select

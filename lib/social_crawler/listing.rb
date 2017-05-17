@@ -1,4 +1,4 @@
-class String # rubocop:disable Style/Documentation
+class String
   # It's easier to store and handle Booleans than different
   # strings that represent true or false.
   #
@@ -24,14 +24,10 @@ class SocialCrawler
   # @authors [Tyler Hampton, Yan Yin Choy]
   # @since 0.1.0
   #
-  # rubocop:disable Metrics/LineLength
-  #
   # @param [Mechanize] table_cells A Mechanize search against all table cells in a page.
   #
-  # rubocop:enable Metrics/LineLength
   #
-  #
-  class Listing < SocialCrawler # rubocop:disable Metrics/ClassLength, Metrics/LineLength
+  class Listing < SocialCrawler # rubocop:disable Metrics/ClassLength
     attr_reader :attributes
     attr_reader :listing_url
     attr_reader :table_cells
@@ -63,6 +59,7 @@ class SocialCrawler
         { social_url: @listing_url }
       ]
 
+      data_hashes.each { |hash| data_hashes.delete(hash) if hash.nil? }
       data_hashes.inject(&:merge)
     end
 
@@ -112,30 +109,50 @@ class SocialCrawler
     # @return [Hash] A collection of housing metadata.
     #
     #
-    def parse_one_to_one # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+    def parse_one_to_one
       complete_data = {}
 
       @table_cells.each_with_index do |cell, index|
-        cell_first_content = cell.children[0].to_s.strip.chop
-        cell_next_content = @table_cells[index + 1]
+        #
+        # Go inside of each cell and check for a match against
+        # each of its children.
+        #
+        cell.children.each do |child|
+          child = child.to_s
 
-        match_datums = one_to_one_match_datums
-        next_cell_match_content = determine_child_placements(
-          cell_first_content,
-          cell_next_content,
-          match_datums
-        )
+          next if child.nil? || child.empty?
 
-        next if next_cell_match_content.nil?
+          child = cleanse(child)
 
-        cleansed_cell_content = cleanse(
-          next_cell_match_content.children[0].to_s
-        )
+          if one_to_one_match_datums.include?(child)
+            next_cell_content = @table_cells[index + 1]
+          end
 
-        metadata_key = keyify(cell_first_content)
-        complete_data.merge!(
-          metadata_key => cleansed_cell_content
-        )
+          next_cell_match_content = determine_child_placements(
+            child,
+            next_cell_content,
+            one_to_one_match_datums
+          )
+
+          next if next_cell_match_content.nil?
+
+          cleansed_cell_content = cleanse(
+            next_cell_match_content.children[0].to_s
+          )
+
+          #
+          # Turn the first cell's content into a hash key.
+          #
+          metadata_key = keyify(child)
+
+          #
+          # Merge the { key: value } return value into the
+          # the larger complete_data hash
+          #
+          complete_data.merge!(
+            metadata_key => cleansed_cell_content
+          )
+        end
       end
 
       complete_data
@@ -147,11 +164,14 @@ class SocialCrawler
     # disrupt the previous parse methods logic so this
     # function handles those discrepancies.
     #
+    # This should eventually be refactored into the parse_one_to_one
+    # function.
+    #
     # @param
     # @return [Hash] A collection of housing metadata.
     #
     #
-    def parse_question_marks # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/LineLength
+    def parse_question_marks
       match_datums = question_match_datums
 
       complete_data = {}
@@ -159,7 +179,8 @@ class SocialCrawler
         match_datums.each do |datum|
           cell_content = cell.children[2].to_s
           cleansed_cell_content = cleanse(cell_content.to_s)
-          unless cleansed_cell_content.is_a?(TrueClass) || cleansed_cell_content.is_a?(FalseClass) # rubocop:disable Metrics/LineLength
+
+          unless cleansed_cell_content.is_a?(TrueClass) || cleansed_cell_content.is_a?(FalseClass)
             cleansed_cell_content[0] = ''
           end
 
@@ -188,7 +209,7 @@ class SocialCrawler
     # @return [Hash] A collection of housing metadata.
     #
     #
-    def parse_row_links # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/LineLength
+    def parse_row_links
       match_datums = [
         'Flooring Materials',
         'Additional Property Options',
@@ -224,12 +245,8 @@ class SocialCrawler
     # parsing so this function will determine whether or not to skip
     # the first cell after a matched datum.
     #
-    # rubocop:disable Metric/LineLength
-    #
     # @param [Nokogiri::XML::Element] table_cell_match_content The matched content within a cell.
     # @return [Boolean] Indication of accessibility icon presence.
-    #
-    # rubocop:enable Metric/LineLength
     #
     #
     def element_concerns_accessibility?(table_cell_match_content)
@@ -262,16 +279,16 @@ class SocialCrawler
     # 'bedrooms' string exists inside that Nokogiri object. Then the element
     # next to that table cell (<td><p>2<td><p>) is parsed out.
     #
-    # rubocop:disable Metric/LineLength
-    #
     # @param [Nokogiri::XML::Element] cell_first_content The first cell match
     # @param [Nokogiri::XML::Element] cell_next_content The cell next to the first cell
     # @param [Array<String>] match_datums A list of phrases/words to match against
     # @return [Nokogiri::XML::Element] A child element that has valuable data
     #
-    # rubocop:disbale Metric/LineLength
     #
     def determine_child_placements(cell_first_content, cell_next_content, match_datums)
+      #
+      # Check to see if an of our match datums is within the first cell.
+      #
       if match_datums.include?(cell_first_content)
         table_cell_match_content = cell_next_content.children[1]
 
@@ -300,17 +317,22 @@ class SocialCrawler
     def parse_address
       address_div = @page.search('div.h2')[0]
 
-      property_type = parse_one_to_one[:property_type]
-      if property_type.match(/house/im) || property_type.match(/duplex/im)
-        {
-          address: cleanse(address_div.children[0].to_s),
-          apartment_name: 'N/A'
-        }
-      else
-        {
-          address: cleanse(address_div.children[2].to_s),
-          apartment_name: cleanse(address_div.children[0].to_s)
-        }
+      begin
+        property_type = parse_one_to_one[:property_type]
+        if property_type.match(/house/im) || property_type.match(/duplex/im)
+          {
+            address: cleanse(address_div.children[0].to_s),
+            apartment_name: 'N/A'
+          }
+        else
+          {
+            address: cleanse(address_div.children[2].to_s),
+            apartment_name: cleanse(address_div.children[0].to_s)
+          }
+        end
+      rescue StandardError => error
+        puts 'Trouble parsing address.'
+        puts error
       end
     end
 
@@ -379,7 +401,7 @@ class SocialCrawler
     # @return [Array] Datums to use for matching.
     #
     #
-    def one_to_one_match_datums # rubocop:disable Metrics/MethodLength
+    def one_to_one_match_datums
       datums = [
         'Property Type',
         'Bedrooms',
@@ -452,7 +474,7 @@ class SocialCrawler
       datums
     end
 
-    def question_match_datums # rubocop:disable Metrics/MethodLength
+    def question_match_datums
       datums = [
         'Criminal Check\:',
         'Pets\:',

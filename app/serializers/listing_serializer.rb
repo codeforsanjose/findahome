@@ -70,6 +70,7 @@ class ListingSerializer < ActiveModel::Serializer
              :smoking,
              :security_deposit,
              :application_fee,
+             :rent_amount,
              :date_available,
              :flooring_materials,
              :other_appliances_included,
@@ -77,6 +78,8 @@ class ListingSerializer < ActiveModel::Serializer
              :shopping_venues,
              :light_rail_station,
              :social_url,
+             :latitude,
+             :longitude,
              :created_at,
              :updated_at
 end

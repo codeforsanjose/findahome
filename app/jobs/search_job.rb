@@ -14,7 +14,7 @@ class SearchJob # rubocop:disable Style/Documentation
   #
   #
   include Sidekiq::Worker
-  sidekiq_options retry: 1
+  sidekiq_options retry: 3
   sidekiq_retry_in { yield 1600 }
 
   def perform
