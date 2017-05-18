@@ -12,7 +12,7 @@ export default Ember.Route.extend({
         lat: marker.get('latitude'),
         lng: marker.get('longitude'),
         infoWindow: {
-          content: `<a href=${marker.get('socialUrl')}>Listing URL<a>`,
+          content: `<a href=${marker.get('propertyWebsite')}>Listing URL<a>`,
           visible: false
         }
       };
@@ -22,7 +22,8 @@ export default Ember.Route.extend({
       lat: 37.338208,
       lng: -121.886329,
       zoom: 12,
-      markers: Ember.A(markers)
+      markers: markers,
+      model: model
     });
   }
 });
