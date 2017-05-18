@@ -1,5 +1,7 @@
+
 # BUG to fix: Database is only seeded with the first listing. 
 Listing.destroy_all
+
 
 Listing.create([
   {

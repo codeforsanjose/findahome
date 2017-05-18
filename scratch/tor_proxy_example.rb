@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # This ended up not working. This code authenticates to a local tor instance
 # and then routes traffic through tor relays. However, while it did work
 # as far as providing a 'fake' ip address, it turns out that social serve

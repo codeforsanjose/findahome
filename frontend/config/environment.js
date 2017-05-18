@@ -29,7 +29,6 @@ module.exports = function(environment) {
     }
   };
 
-
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
@@ -40,6 +39,7 @@ module.exports = function(environment) {
     ENV.googleMap = {
       apiKey: process.env.GOOGLE_MAPS
     };
+
   }
 
   if (environment === 'test') {
@@ -54,8 +54,11 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
   }
+
+  ENV.googleMap = {
+    apiKey: process.env.GMAPS_KEY
+  };
 
   return ENV;
 };

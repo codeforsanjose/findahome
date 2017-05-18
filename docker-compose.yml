@@ -1,0 +1,27 @@
+version: '2'
+services:
+  postgres:
+    image: postgres
+  redis:
+    image: redis
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - postgres
+      - redis
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+      - redis
+  sidekiq:
+    image: howdoicomputer/findahome
+    command: deploy/start_sidekiq.sh
+    links:
+      - redis
+    env_file:
+      - .env
+    depends_on:
+      - redis

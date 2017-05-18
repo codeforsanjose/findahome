@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 require_relative '../../../lib/social_crawler'
 
-RSpec.describe SocialCrawler::Search do # rubocop:disable Metric/BlockLength
+RSpec.describe SocialCrawler::Search do # rubocop:disable Metrics/BlockLength
   before(:all) do
     VCR.use_cassette('search_page') do
       @search_agent = SocialCrawler::Search.new

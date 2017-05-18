@@ -1,4 +1,5 @@
-class Api::ListingsController < ApplicationController
+# frozen_string_literal: true
+class Api::ListingsController < ApplicationController # rubocop:disable Metrics/ClassLength
   before_action :set_listing, only: [:show, :update, :destroy]
 
   # GET /listings
@@ -46,9 +47,11 @@ class Api::ListingsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def listing_params
+
       params.require(:listing).permit(:listing_id, :property_name, :property_address,
       :latitude, :longitude, :property_website, :property_manager, :property_management_phone,
       :property_type, :population, :extremely_low_income_units, :very_low_income_units, :moderate_income_units,
       :hud_units, :total_affordable_units)
+
     end
 end
