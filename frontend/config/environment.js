@@ -38,7 +38,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
 
     ENV.googleMap = {
-      apiKey: process.env.GMAPS_KEY
+      apiKey: process.env.GOOGLE_MAPS
     };
   }
 
