@@ -57,3 +57,5 @@ listings = [
     type:	"Family Housing Units"
   }
 ]
+
+Listing.create(listings)
