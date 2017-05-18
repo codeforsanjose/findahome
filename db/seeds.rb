@@ -15,21 +15,22 @@ listings = [
     property_manager:	"John Stewart Company",
     property_management_phone: "(408) 516-4776",
     type:	"Special Needs Housing",
-  }
-  { property_name: 	"Creekview Inn",
+  },
+  {
+    property_name: 	"Creekview Inn",
     property_address:	"965 Lundy Avenue, San Jose, CA 95133",
     property_website:	"http://www.firsthousing.com/contact/rental/",
     property_manager:	"EAH, Inc.",
     property_management_phone: "(408) 254-4540",
     type:	"Special Needs Housing",
-  }
+  },
   { property_name: 	"Avenida Espana Gardens",
     property_address:	"181 Rawls Ct., San Jose, CA 95139",
-    property_website	"http://jsco.net/property/avenida-espaa-gardens/",
+    property_website:	"http://jsco.net/property/avenida-espaa-gardens/",
     property_manager:	"John Stewart Company",
     property_management_phone: "(408) 972-5529",
     type:	"Senior Housing Units"
-  }
+  },
   {
     property_name: 	"Belovida Apartments",
     property_address:	"1777 Newbury Park Dr., San Jose, CA 95133",
@@ -38,7 +39,7 @@ listings = [
     property_management_phone: "(877) 264-2669",
     type:	"Senior Housing Units"
 
-  }
+  },
   {
     property_name: 	"Miraido Village Mixed-use Project",
     property_address:	"566 N. 6th Street, San Jose, CA 95112",
@@ -46,7 +47,7 @@ listings = [
     property_manager:	"Evans Property Management, Inc.",
     property_management_phone: "(408) 297-0990",
     type:	"Family Housing Units"
-  }
+  },
   {
     property_name: 	"Monte Alban",
     property_address:	"1324 Santee Dr., San Jose, CA 95122",
