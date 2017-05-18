@@ -1,45 +1,37 @@
 <div class="ui container">
-    <div class="ui segment">
-        <b> Apartments for Rent </b>
-        <table class="ui definition table">
-            <tr>
-                <td class="one wide column">
-                    <div class="ui label">Rent:</div>
-                </td>
-                <td>
-                    {{range-slider
-                      defaultValue='500,1500'
-                      value='500,1500'
-                      min=1
-                      max=5000
-                      step=1
-                      tooltip='hide'
-                    }}
-                </td>
-            </tr>
-        </table>
-        <h4 class="ui horizontal divider header">
-            <i class="tag icon"></i>
-            Listing information
-        </h4>
-        <div class="row">
-            <img id="dummy-image" class="image" src="https://d37lj287rvypnj.cloudfront.net/161528805/640x480">
-        </div>
-        <div class="row">
-            <div class="ui two column middle aligned very relaxed stackable grid">
-                <div class="four wide column">
-                    <h1>$2,200</h1>
-                </div>
-                <div class="divider-column">
-                    <div class="ui vertical fitted divider">
-                        at
-                    </div>
-                </div>
-                <div class="column">
-                    <a>Saratoga Springs</a>
-                    <p>The Golden Foothill, Saratoga</p>
-                </div>
-            </div>
-        </div>
-    </div>
+  <div class="ui segment">
+    <b> Affordable Housing </b>
+    <table class="ui definition table">
+        <tr>
+            <td class="one wide column">
+                <div class="ui label">Rent:</div>
+            </td>
+            <td>
+                {{range-slider
+                  defaultValue='500,1500'
+                  value='500,1500'
+                  min=1
+                  max=5000
+                  step=1
+                  tooltip='hide'
+                }}
+            </td>
+        </tr>
+    </table>
+
+    <h4 class="ui horizontal divider header">
+        <i class="tag icon"></i>
+        Affordable Housing Units
+    </h4>
+
+    <article class="listing-card">
+      {{#each model as |listing|}}
+        <h3> Name: {{listing.propertyName}}</h3>
+        <p> Address: {{listing.address}}</p>
+        <p> Type: {{listing.type}}</p>
+
+      {{/each}}
+    </article>
+
+  </div>
 </div>
