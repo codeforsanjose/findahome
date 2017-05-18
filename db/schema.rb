@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170518051608) do
+ActiveRecord::Schema.define(version: 20170518052222) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "listings", force: :cascade do |t|
-    t.integer  "listings_id"
+    t.integer  "listing_id"
     t.string   "property_name"
     t.string   "property_address"
     t.float    "latitude"
