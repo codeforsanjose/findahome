@@ -12,7 +12,10 @@ export default Ember.Route.extend({
         lat: marker.get('latitude'),
         lng: marker.get('longitude'),
         infoWindow: {
-          content: `<a href=${marker.get('propertyWebsite')}>Listing URL<a>`,
+          content: `
+                    <h3>${marker.get('propertyName')}</h3>
+                    <a href=${marker.get('propertyWebsite')}>Website<a>
+                    `,
           visible: false
         }
       };
