@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require './lib/social_crawler'
 require 'sidekiq'
 
@@ -27,6 +28,12 @@ class ListingJob
       logger.debug "fetched data is #{complete_data}"
     rescue Mechanize::ResponseCodeError => error
       logger.debug "error fetching page: #{error}"
+    end
+
+    if complete_data.nil?
+      msg = 'No data was fetched.'
+      logger.debug msg
+      raise msg
     end
 
     Listing.find_or_create_by(listing_id: complete_data[:listing_id]) do |listing|

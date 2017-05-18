@@ -1,0 +1,57 @@
+version: '2'
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:9.6.2
+    size: s2
+    volumes:
+      - postgres:/var/lib/postgresql/data
+  redis:
+    container_name: redis
+    size: s2
+    image: redis:3.2.8
+    volumes:
+      - redis:/data
+  app:
+    container_name: app
+    size: m1
+    image: howdoicomputer/findahome
+    fip: 199.245.57.129
+    ports:
+      - "80:3000"
+    links:
+      - postgres
+      - redis
+    env_file:
+      - ../../.env
+    depends_on:
+      - postgres
+      - redis
+  sidekiq:
+    container_name: sidekiq
+    size: s4
+    image: howdoicomputer/findahome
+    command: bash -c "/home/findahome/findahome/deploy/start_sidekiq.sh"
+    links:
+      - redis
+      - postgres
+    env_file:
+      - ../../.env
+    depends_on:
+      - redis
+      - postgres
+
+# This is currently commented out due to me hitting my lets encrypt API limit. Will pull in next week.
+#
+#  proxy:
+#    image: jgillich/hyper-proxy
+#    container_name: proxy
+#    ports:
+#      - "80:80"
+#      - "443:443"
+#    environment:
+#      - "HYPER_ACCESS=${HYPER_ACCESS}"
+#      - "HYPER_SECRET=${HYPER_SECRET}"
+#      - "LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL}"
+#    size: s3
+#    fip: 199.245.57.129

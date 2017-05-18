@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# frozen_string_literal: true
 require 'mechanize'
 
 base_url = 'http://www.socialserve.com'
@@ -61,7 +62,7 @@ complete_data = {}
       complete_data.merge!({
         cell_first_content.to_sym => table_cell_match_content.children[0].to_s.gsub(/\n/, '').gsub(/\t/,'')
         #gsub to remove newline and new tabs.
-       })
+      })
     end
   end
   complete_data
