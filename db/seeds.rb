@@ -25,7 +25,7 @@ listings = [
   }
   { property_name: 	"Avenida Espana Gardens",
     property_address:	"181 Rawls Ct., San Jose, CA 95139",
-    property_website	"http://jsco.net/property/avenida-espaa-gardens/",
+    property_website:	"http://jsco.net/property/avenida-espaa-gardens/",
     property_manager:	"John Stewart Company",
     property_management_phone: "(408) 972-5529",
     type:	"Senior Housing Units"
