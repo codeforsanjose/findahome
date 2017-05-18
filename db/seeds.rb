@@ -7,14 +7,14 @@
 #   Character.create(name: 'Luke', movie: movi
 Listing.destroy_all
 
-listings = [
+Listing.create([
   {
     property_name: "Casa Feliz Studios",
     property_address:	"525 S.9th Street, San Jose, CA 95112",
     property_website:	"http://jsco.net/property/casa-feliz-studios/",
     property_manager:	"John Stewart Company",
     property_management_phone: "(408) 516-4776",
-    property_type:	"Special Needs Housing",
+    property_type:	"Special Needs Housing"
   },
   {
     property_name: 	"Creekview Inn",
@@ -22,9 +22,10 @@ listings = [
     property_website:	"http://www.firsthousing.com/contact/rental/",
     property_manager:	"EAH, Inc.",
     property_management_phone: "(408) 254-4540",
-    property_type:	"Special Needs Housing",
+    property_type:	"Special Needs Housing"
   },
-  { property_name: 	"Avenida Espana Gardens",
+  {
+    property_name: 	"Avenida Espana Gardens",
     property_address:	"181 Rawls Ct., San Jose, CA 95139",
     property_website:	"http://jsco.net/property/avenida-espaa-gardens/",
     property_manager:	"John Stewart Company",
@@ -38,7 +39,6 @@ listings = [
     property_manager:	"EAH Housing Inc.",
     property_management_phone: "(877) 264-2669",
     property_type:	"Senior Housing Units"
-
   },
   {
     property_name: 	"Miraido Village Mixed-use Project",
@@ -56,6 +56,4 @@ listings = [
     property_management_phone: "(408) 286-1903",
     property_type:	"Family Housing Units"
   }
-]
-
-Listing.create(listings)
+])
