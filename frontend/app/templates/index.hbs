@@ -1,55 +1,56 @@
 <div class="ui top attached stackable inverted menu">
-    <div class="ui dropdown icon item">
-        <i class="wrench icon"></i>
-        <div class="menu">
-        <div class="item">
-            <i class="dropdown icon"></i>
-            <span class="text">Blah</span>
-            <div class="menu">
-            <div class="item">Blah</div>
-            <div class="item">Image</div>
-            </div>
-        </div>
-        <div class="item">
-            Open...
-        </div>
-        <div class="item">
-            Save...
-        </div>
-        <div class="item">Edit Permissions</div>
-        <div class="divider"></div>
-        <div class="header">
-            Export
-        </div>
-        <div class="item">
-            Share...
-        </div>
-        </div>
+  <div class="ui dropdown icon item">
+    <i class="wrench icon"></i>
+    <div class="menu">
+    <div class="item">
+      <i class="dropdown icon"></i>
+      <span class="text">Blah</span>
+      <div class="menu">
+      <div class="item">Blah</div>
+      <div class="item">Image</div>
+      </div>
     </div>
-    <div class="right menu">
-        <div class="ui right aligned category search item">
-        <div class="ui transparent icon input">
-            <input class="prompt" type="text" placeholder="Search listings...">
-            <i class="search link icon"></i>
-        </div>
-        <div class="results"></div>
-        </div>
+    <div class="item">
+        Open...
     </div>
+    <div class="item">
+        Save...
+    </div>
+    <div class="item">Edit Permissions</div>
+    <div class="divider"></div>
+    <div class="header">
+        Export
+    </div>
+    <div class="item">
+        Share...
+    </div>
+    </div>
+  </div>
+  <div class="right menu">
+    <div class="ui right aligned category search item">
+    <div class="ui transparent icon input">
+      <input class="prompt" type="text" placeholder="Search listings...">
+      <i class="search link icon"></i>
+    </div>
+    <div class="results"></div>
+    </div>
+  </div>
 </div>
 
+<!-- TODO Fix the responsive web design. When screen is half-size or quarter size, the right column header gets cut off.-->
 <div id="content" class="ui doubling bottom attached grid">
-    <div id="left-column" class="twelve wide column">
-        <div id="maps-row" class="stretched row">
-            <div id="maps-column" class="column">
-                {{g-maps name="my-map" markers=markers lat=lat lng=lng zoom=zoom}}
-            </div>
-        </div>
+  <div id="left-column" class="twelve wide column">
+    <div id="maps-row" class="stretched row">
+      <div id="maps-column" class="column">
+        {{g-maps name="my-map" markers=markers lat=lat lng=lng zoom=zoom}}
+      </div>
     </div>
-    <div id="right-column" class="four wide column">
-        <div id="listing-info-row" class="stretched row">
-            <div id="listing-info-column" class="column">
-                {{listing-info-sidebar model=model}}
-            </div>
-        </div>
+  </div>
+  <div id="right-column" class="four wide column">
+    <div id="listing-info-row" class="stretched row">
+      <div id="listing-info-column" class="column">
+        {{listing-info-sidebar model=model}}
+      </div>
     </div>
+  </div>
 </div>

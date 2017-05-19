@@ -1,5 +1,4 @@
 <div class="ui container">
-  <div class="ui segment">
     <!-- TODO - search by radius -->
     <!-- TODO - fix responsive web design. Flexible columns so the information
     doesn't look too cramped on the side when the screen is half or quartersize
@@ -23,21 +22,49 @@
       </tr>
     </table> -->
 
-    <h3 class="ui horizontal divider header">
-      Affordable Housing Units
-    </h3>
+    <div class="ui container">
+      <h2>Affordable Housing Units</h2>
+    </div>
 
+    <br>
     <!-- TODO Scrollable page -->
     <article class="listing-card">
       {{#each model as |listing|}}
-        <i class="tag icon"></i>
-        <a href={{listing.propertyWebsite}}><b>{{listing.propertyName}}</b></a>
-        <p><i class="map pin icon"></i>{{listing.propertyAddress}}</p>
-        <p><b>Type:</b> {{listing.propertyType}}</p>
-        <p><b>Property Management:</b> {{listing.propertyManager}}</p>
-        <p><i class="call icon"></i><b>Phone:</b>{{listing.propertyManagementPhone}}</p>
-      {{/each}}
-    </article>
 
-  </div>
+      <div class="ui list">
+        <div class="item">
+          <i class="tag icon"></i>
+          <div class="content">
+            <h3>{{listing.propertyName}}</h3>
+          </div>
+        </div>
+        <div class="item">
+          <i class="marker icon"></i>
+          <div class="content">
+            {{listing.propertyAddress}}
+          </div>
+        </div>
+        <div class="item">
+          <i class="call icon"></i>
+          <div class="content">
+            {{listing.propertyManagementPhone}}
+          </div>
+        </div>
+        <div class="item">
+          <i class="linkify icon"></i>
+          <div class="content">
+            <a href="{{listing.propertyWebsite}}">{{listing.propertyWebsite}}</a>
+          </div>
+        </div>
+        <div class="item">
+          <i class="users icon"></i>
+          <div class="content">
+            {{listing.propertyType}}
+          </div>
+        </div>
+      </div>
+      <div class="ui divider">
+      </div>
+    {{/each}}
+    </article>
 </div>
