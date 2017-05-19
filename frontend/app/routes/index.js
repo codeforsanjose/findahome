@@ -13,8 +13,34 @@ export default Ember.Route.extend({
         lng: marker.get('longitude'),
         infoWindow: {
           content: `
-                    <h3>${marker.get('propertyName')}</h3>
-                    <a href=${marker.get('propertyWebsite')}>Website<a>
+
+                    <div class="ui list">
+                      <div class="item">
+                       
+                        <div class="content">
+                          <h3>${marker.get('propertyName')}</h3>
+                        </div>
+                      </div>
+                      <div class="item">
+                        <i class="call icon"></i>
+                        <div class="content">
+                          ${marker.get('propertyManagementPhone')}
+                        </div>
+                      </div>
+                      <div class="item">
+                        <i class="linkify icon"></i>
+                        <div class="content">
+                          <a href=${marker.get('propertyWebsite')}>Website</a>
+                        </div>
+                      </div>
+                      <div class="item">
+                        <i class="users icon"></i>
+                        <div class="content">
+                          ${marker.get('propertyType')}
+                        </div>
+                      </div>
+                    </div>
+
                     `,
           visible: false
         }
