@@ -1,95 +1,59 @@
-# frozen_string_literal: true
-# This file should contain all the record creation needed to seed the database
-# with its default values.
-#
-# The data can then be loaded with the rails db:seed command (or created alongside
-# the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movi
+Listing.destroy_all
 
-Listing.create(
-property_type: 'Apartment',
-bedrooms: 2,
-bathrooms: 1.0,
-lease_length: 'One Year',
-square_feet_approx: 1015,
-apartment_name: 'Delmas Park Apartments',
-address: '350 Bird Avenue, San Jose, CA 95126',
-accepts_section_8: true,
-security_deposit: '$700',
-application_fee: '$30 per adult',
-date_available: 'Waiting List',
-listing_id: 1,
-rent_amount: 1499,
-latitude: 37.3242903,
-longitude: -121.89968379999999)
 
-Listing.create(
-property_type: 'Studio',
-bedrooms: 0,
-bathrooms: 1.0,
-lease_length: 'One Year',
-square_feet_approx: 625,
-apartment_name: 'Delmas Park Apartments',
-address: '350 Bird Avenue, San Jose, CA 95126',
-accepts_section_8: true,
-security_deposit: '$500',
-application_fee: '$30 per adult',
-date_available: 'Waiting List',
-listing_id: 2,
-rent_amount: 979,
-latitude: 37.3242903,
-longitude: -121.89968379999999)
-
-Listing.create(
-property_type: 'Apartment',
-bedrooms: 1,
-bathrooms: 1.0,
-lease_length: 'One Year',
-square_feet_approx: 715,
-apartment_name: 'Villa Torre Apartments',
-address: '955 South Sixth Street, San Jose, CA 95112',
-accepts_section_8: true,
-security_deposit: '$1,232',
-application_fee: '$33 per adult',
-date_available: 'Waiting List',
-listing_id: 3,
-rent_amount: 1232,
-latitude: 37.3245349,
-longitude: -121.87495030000002)
-
-Listing.create(
-property_type: 'Apartment',
-bedrooms: 1,
-bathrooms: 1.0,
-lease_length: 'One Year',
-apartment_name: 'Belovida At Newbury Park Apartments',
-address: '1777 Newbury Park Drive, San Jose, CA 95133',
-accepts_section_8: true,
-security_deposit: '$500',
-application_fee: '$46 per adult',
-date_available: 'Waiting List',
-listing_id: 4,
-rent_amount: 1002,
-latitude: 37.3665838,
-longitude: -121.867343)
-
-Listing.create(
-property_type: 'Apartment',
-bedrooms: 0,
-bathrooms: 1.0,
-lease_length: 'One Year',
-square_feet_approx: 476,
-apartment_name: 'Casa De Los Amigos',
-address: '967 Lundy Street, San Jose, CA 95133',
-accepts_section_8: false,
-security_deposit: '$810',
-application_fee: 'None',
-date_available: 'Waiting List',
-listing_id: 5,
-rent_amount: 810,
-latitude: 37.3721286,
-longitude: -121.8735691)
+Listing.create([
+  {
+    listing_id: 1,
+    property_name: 'Casa Feliz Studios',
+    property_address:	'525 S.9th Street, San Jose, CA 95112',
+    property_website:	'http://jsco.net/property/casa-feliz-studios/',
+    property_manager:	'John Stewart Company',
+    property_management_phone: '(408) 516-4776',
+    property_type:	'Special Needs Housing'
+  },
+  {
+    listing_id: 2,
+    property_name: 	'Creekview Inn',
+    property_address:	'965 Lundy Avenue, San Jose, CA 95133',
+    property_website:	'http://www.firsthousing.com/contact/rental/',
+    property_manager:	'EAH, Inc.',
+    property_management_phone: '(408) 254-4540',
+    property_type:	'Special Needs Housing'
+  },
+  {
+    listing_id: 3,
+    property_name: 	'Avenida Espana Gardens',
+    property_address:	'181 Rawls Ct., San Jose, CA 95139',
+    property_website:	'http://jsco.net/property/avenida-espaa-gardens/',
+    property_manager:	'John Stewart Company',
+    property_management_phone: '(408) 972-5529',
+    property_type:	'Senior Housing Units'
+  },
+  {
+    listing_id: 4,
+    property_name: 	'Belovida Apartments',
+    property_address:	'1777 Newbury Park Dr., San Jose, CA 95133',
+    property_website:	'http://www.belovidanewburypark.com/',
+    property_manager:	'EAH Housing Inc.',
+    property_management_phone: '(877) 264-2669',
+    property_type:	'Senior Housing Units'
+  },
+  {
+    listing_id: 5,
+    property_name: 	'Miraido Village Mixed-use Project',
+    property_address:	'566 N. 6th Street, San Jose, CA 95112',
+    property_website:	'http://www.miraidovillageapartments.com/san-jose-ca-apartments.asp',
+    property_manager:	'Evans Property Management, Inc.',
+    property_management_phone: '(408) 297-0990',
+    property_type:	'Family Housing Units'
+  },
+  {
+    listing_id: 6,
+    property_name: 	'Monte Alban',
+    property_address:	'1324 Santee Dr., San Jose, CA 95122',
+    property_website: 'http://jsco.net/property/monte-alban-apartments/',
+    property_manager:	'John Stewart Company',
+    property_management_phone: '(408) 286-1903',
+    property_type:	'Family Housing Units'
+  }
+])

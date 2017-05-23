@@ -1,45 +1,72 @@
 <div class="ui container">
-    <div class="ui segment">
-        <b> Apartments for Rent </b>
-        <table class="ui definition table">
-            <tr>
-                <td class="one wide column">
-                    <div class="ui label">Rent:</div>
-                </td>
-                <td>
-                    {{range-slider
-                      defaultValue='500,1500'
-                      value='500,1500'
-                      min=1
-                      max=5000
-                      step=1
-                      tooltip='hide'
-                    }}
-                </td>
-            </tr>
-        </table>
-        <h4 class="ui horizontal divider header">
-            <i class="tag icon"></i>
-            Listing information
-        </h4>
-        <div class="row">
-            <img id="dummy-image" class="image" src="https://d37lj287rvypnj.cloudfront.net/161528805/640x480">
+  <!-- TODO - search by radius -->
+  <!-- TODO - fix responsive web design. Flexible columns so the information
+  doesn't look too cramped on the side when the screen is half or quartersize
+  -->
+  <!-- <table class="ui definition table">
+
+    <tr>
+      <td class="one wide column">
+          <div class="ui label">Rent:</div>
+      </td>
+      <td>
+          {{range-slider
+            defaultValue='500,1500'
+            value='500,1500'
+            min=1
+            max=5000
+            step=1
+            tooltip='hide'
+          }}
+      </td>
+    </tr>
+  </table> -->
+
+  <div class="ui container">
+    <h2>Affordable Housing Units</h2>
+  </div>
+
+  <br>
+  <!-- TODO Scrollable page -->
+
+  <article class="listing-card">
+    {{#each model as |listing|}}
+
+    <div class="ui list">
+      <div class="item">
+        <i class="tag icon"></i>
+        <div class="content">
+          <h3>{{listing.propertyName}}</h3>
         </div>
-        <div class="row">
-            <div class="ui two column middle aligned very relaxed stackable grid">
-                <div class="four wide column">
-                    <h1>$2,200</h1>
-                </div>
-                <div class="divider-column">
-                    <div class="ui vertical fitted divider">
-                        at
-                    </div>
-                </div>
-                <div class="column">
-                    <a>Saratoga Springs</a>
-                    <p>The Golden Foothill, Saratoga</p>
-                </div>
-            </div>
+      </div>
+      <div class="item">
+        <i class="marker icon"></i>
+        <div class="content">
+          {{listing.propertyAddress}}
         </div>
+      </div>
+      <div class="item">
+        <i class="call icon"></i>
+        <div class="content">
+          {{listing.propertyManagementPhone}}
+        </div>
+      </div>
+      <div class="item">
+        <i class="linkify icon"></i>
+        <div class="content">
+          <a href="{{listing.propertyWebsite}}">{{listing.propertyWebsite}}</a>
+        </div>
+      </div>
+      <div class="item">
+        <i class="users icon"></i>
+        <div class="content">
+          {{listing.propertyType}}
+        </div>
+      </div>
     </div>
+    <div class="ui divider">
+    </div>
+  {{/each}}
+  </article>
+
 </div>

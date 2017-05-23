@@ -12,7 +12,36 @@ export default Ember.Route.extend({
         lat: marker.get('latitude'),
         lng: marker.get('longitude'),
         infoWindow: {
-          content: `<a href=${marker.get('socialUrl')}>Listing URL<a>`,
+          content: `
+
+                    <div class="ui list">
+                      <div class="item">
+
+                        <div class="content">
+                          <h3>${marker.get('propertyName')}</h3>
+                        </div>
+                      </div>
+                      <div class="item">
+                        <i class="call icon"></i>
+                        <div class="content">
+                          ${marker.get('propertyManagementPhone')}
+                        </div>
+                      </div>
+                      <div class="item">
+                        <i class="linkify icon"></i>
+                        <div class="content">
+                          <a href=${marker.get('propertyWebsite')}>Website</a>
+                        </div>
+                      </div>
+                      <div class="item">
+                        <i class="users icon"></i>
+                        <div class="content">
+                          ${marker.get('propertyType')}
+                        </div>
+                      </div>
+                    </div>
+
+                    `,
           visible: false
         }
       };
@@ -21,8 +50,9 @@ export default Ember.Route.extend({
     controller.setProperties({
       lat: 37.338208,
       lng: -121.886329,
-      zoom: 12,
-      markers: Ember.A(markers)
+      zoom: 11,
+      markers: markers,
+      model: model
     });
   }
 });
