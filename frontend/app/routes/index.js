@@ -16,7 +16,7 @@ export default Ember.Route.extend({
 
                     <div class="ui list">
                       <div class="item">
-                       
+
                         <div class="content">
                           <h3>${marker.get('propertyName')}</h3>
                         </div>
@@ -50,7 +50,7 @@ export default Ember.Route.extend({
     controller.setProperties({
       lat: 37.338208,
       lng: -121.886329,
-      zoom: 12,
+      zoom: 11,
       markers: markers,
       model: model
     });
