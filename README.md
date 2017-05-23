@@ -2,19 +2,17 @@
 [![Coverage Status](https://coveralls.io/repos/github/codeforsanjose/findahome/badge.svg?branch=development)](https://coveralls.io/github/codeforsanjose/findahome?branch=development)
 [![Dependency Status](https://gemnasium.com/badges/github.com/codeforsanjose/findahome.svg)](https://gemnasium.com/github.com/codeforsanjose/findahome)
 
-![screenshot](http://i.imgur.com/AaVd6VY.png)
+![screenshot](http://www.yanyinchoy.com/assets/img/findahome_may2017_thumbnail.png)
 
 # Find a Home
 
-The Find a Home project is an effort by a group within Code for San Jose to provide mobile and web applications that make finding affordable housing in the Bay Area not only easy but also moderately fun.
+The Find a Home project is an effort by a Code for San Jose team to provide mobile and web applications that make finding affordable housing in the Bay Area not only easy but also moderately fun.
 
 ## Why
 
 The California Bay Area is currently going through a housing epidemic; rapidly increasing demand for housing is outpacing supply, which is leading to a massive increase in housing costs. To help alleviate the burden of this effect, Bay Area counties restrict rent growth and have land owners set aside rent controlled housing for those who make less than a predetermined amount - with the amount correlating strongly with the median income for the rent controlled area.
 
-While this is good and all, finding that selection of housing is somewhat difficult. While the rest of the housing market is benefited by fancy webapps like Zillow, Padmapper, etc., the rent controlled units are shuffled into a Government contracted website called Social Serve that is not really well known and hard to use.
-
-Since fancy webapps like Zillow and Padmapper lack rent controlled listings and Social Serve is not on par with with said fancy webapps, Find a Home's goal is to provide a web and mobile application that serves the community - all while being really, really good looking.
+Finding affordable housing in the Bay Area is difficult. Cities and counties provide various data on senior, special needs, and family affordable housing. The goal of Find A Home is to consolidate that information and provide a user-friendly web application to navigate and filter nearby affordable housing units.
 
 # Sneak peek
 
@@ -32,7 +30,7 @@ The [mobile application](https://github.com/codeforsanjose/findahomeMobile) is b
 
 ## How you can help
 
-I'll update this repo with a `CONTRIBUTIONS.md` soon!
+Email [Tyler Hampton](https://github.com/howdoicomputer) or [Yan Yin Choy](https://github.com/ychoy), or message us on Code for San Jose Slack for more information on collaboration.
 
 ## How to run this thing
 
