@@ -2,7 +2,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/codeforsanjose/findahome/badge.svg?branch=development)](https://coveralls.io/github/codeforsanjose/findahome?branch=development)
 [![Dependency Status](https://gemnasium.com/badges/github.com/codeforsanjose/findahome.svg)](https://gemnasium.com/github.com/codeforsanjose/findahome)
 
-![screenshot](http://i.imgur.com/IrW5ClB.png)
+![screenshot](http://i.imgur.com/XoBiBhE.png)
 
 # Find a Home
 
